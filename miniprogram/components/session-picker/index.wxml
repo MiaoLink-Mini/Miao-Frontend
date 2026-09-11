@@ -1,0 +1,13 @@
+<view wx:if="{{open}}" class="flow-overlay" catchtap="close" catchtouchmove="noop">
+  <view class="flow-sheet" catchtap="noop" role="dialog" aria-label="{{title}}">
+    <view class="sheet-grip"></view>
+    <view class="row"><view class="sheet-title">{{title}}</view><button class="sheet-close inline-action" size="mini" bindtap="close" aria-label="关闭"><ui-icon name="close" size="{{38}}" tone="accent" /></button></view>
+    <text class="muted">选择要使用的会话</text>
+    <scroll-view scroll-y class="context-list">
+      <button wx:for="{{sessions}}" wx:key="id" class="context-option" bindtap="choose" data-id="{{item.id}}">
+        <view class="row gap"><image wx:if="{{item.agent && item.agent.icon}}" class="agent-logo" src="{{item.agent.icon}}" mode="aspectFit"/><view class="grow"><view class="card-title">{{item.title}}</view><text class="tiny">{{item.agent ? item.agent.name : 'Agent'}} · {{item.stateLabel}}</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view>
+      </button>
+      <view wx:if="{{!sessions.length}}" class="empty">没有可用会话</view>
+    </scroll-view>
+  </view>
+</view>

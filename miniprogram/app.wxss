@@ -1,0 +1,244 @@
+/* Theme tokens are inherited from the page surface. No font downloads. */
+page{--canvas:#171816;--surface:#20211e;--raised:#292b26;--control:#30332b;--line:#393d32;--line-soft:#2b2e27;--ink:#f2f1e8;--muted:#b5b7a9;--quiet:#929887;--accent:#edaa86;--accent-ink:#291a13;--accent-soft:#3b2e24;--positive:#b9d58d;--negative:#f2a49d;--warning:#e8c780;--code:#121410;--add-bg:#253325;--remove-bg:#3a2725;--add-mark:#385438;--remove-mark:#653a34;--syntax:#e7bd8e;--shadow:0 16rpx 52rpx #00000028;background:var(--canvas);color:var(--ink);font:28rpx/1.6 -apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC',sans-serif}
+view,text,button,input,textarea,scroll-view,image{box-sizing:border-box}
+button{margin:0;width:100%;padding:0 28rpx;border:1rpx solid var(--line);border-radius:24rpx;font-size:26rpx;font-weight:600;line-height:92rpx;background:var(--control);color:var(--ink);transition:transform .18s ease,background .2s ease,opacity .2s ease}
+button::after{border:0}
+/* Match native v2 specificity: its fixed width and auto margins break full-width actions and flex headers. */
+button:not([size='mini']){width:100%;margin-left:0;margin-right:0}
+button[disabled]{opacity:.42;background:var(--control)!important;border-color:var(--line)!important;color:var(--muted)!important}
+button.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+button.secondary{background:var(--raised);color:var(--ink)}
+button.danger{background:var(--remove-bg);border-color:var(--remove-mark);color:var(--negative)}
+button.small:not([size='mini']){width:auto;flex-shrink:0;line-height:68rpx;padding:0 22rpx;font-size:23rpx;border-radius:20rpx}
+button[size='mini']{width:auto;display:inline-block;font-size:23rpx;line-height:64rpx;padding:0 22rpx}
+.button-hover,button:active{transform:scale(.975);opacity:.85}
+.app-surface{min-height:100vh;background:var(--canvas);color:var(--ink)}
+.app-surface.tabbed{padding-bottom:calc(132rpx + env(safe-area-inset-bottom))}
+/* Native navigation owns page transitions. Replaying a fade on every onShow flashes the whole screen. */
+.page{padding:32rpx 32rpx 52rpx}
+.large{font-size:32rpx}
+.eyebrow{font:19rpx/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;letter-spacing:3rpx;color:var(--quiet);margin-bottom:14rpx}
+.title{font-size:58rpx;font-weight:650;letter-spacing:-2rpx;line-height:1.2}
+.subtitle{color:var(--muted);font-size:25rpx;margin-top:14rpx;line-height:1.7}
+.section{margin-top:36rpx;margin-bottom:18rpx}
+.section-title{font-size:27rpx;font-weight:600}
+.section-index{display:none}
+.row{display:flex;align-items:center;justify-content:space-between}
+.row.start{justify-content:flex-start}
+.grow{flex:1;min-width:0}
+.gap{gap:20rpx}
+.wrap{flex-wrap:wrap}
+.card{background:var(--surface);border:1rpx solid var(--line-soft);border-radius:30rpx;padding:28rpx;margin-bottom:18rpx;box-shadow:var(--shadow)}
+.card-title{font-size:29rpx;font-weight:600;line-height:1.5;overflow-wrap:anywhere}
+.muted{color:var(--muted);font-size:24rpx}
+.tiny{font-size:21rpx;color:var(--quiet)}
+.chevron{color:var(--quiet);font-size:32rpx;margin-left:20rpx;flex-shrink:0}
+.link{color:var(--accent);font-size:24rpx;font-weight:500}
+.badge{display:inline-block;flex-shrink:0;padding:6rpx 14rpx;border:1rpx solid var(--line);border-radius:10rpx;background:var(--raised);color:var(--muted);font-size:20rpx;white-space:nowrap}
+.badge.running{background:var(--accent-soft);color:var(--accent);border-color:var(--line)}
+.badge.completed,.badge.online{background:var(--add-bg);color:var(--positive);border-color:var(--add-mark)}
+.badge.waiting_approval,.badge.waiting_input{background:var(--accent-soft);color:var(--warning)}
+.badge.failed,.badge.offline{background:var(--remove-bg);color:var(--negative)}
+.dot{display:inline-block;width:10rpx;height:10rpx;border-radius:50%;background:var(--positive);margin-right:10rpx;flex-shrink:0}
+.dot.offline{background:var(--quiet)}
+.icon-box{width:76rpx;height:76rpx;border:1rpx solid var(--line);border-radius:24rpx;background:var(--raised);display:flex;align-items:center;justify-content:center;font-size:30rpx;flex-shrink:0}
+.ui-icon{display:block;width:40rpx;height:40rpx;flex-shrink:0}
+.agent-logo{display:block;width:40rpx;height:40rpx;flex-shrink:0;background:transparent}
+.agent-logo-large{width:72rpx;height:72rpx}
+.paper .agent-logo{background:#30332b;border-radius:8rpx;padding:4rpx}
+.divider{border-top:1rpx solid var(--line-soft);margin:24rpx 0}
+.notice{background:var(--raised);border:1rpx solid var(--line);color:var(--muted);padding:18rpx 22rpx;border-radius:20rpx;margin:18rpx 0;font-size:23rpx}
+.warning{background:var(--accent-soft);border-color:var(--line);color:var(--warning)}
+.error{background:var(--remove-bg);border:1rpx solid var(--remove-mark);color:var(--negative);padding:22rpx;border-radius:20rpx;margin:18rpx 0;font-size:24rpx}
+.actions{display:flex;gap:16rpx;margin-top:22rpx}
+.actions button{flex:1;min-width:0}
+.field-label{font-size:24rpx;font-weight:500;color:var(--muted);margin:28rpx 0 14rpx}
+input,.input,textarea,.picker{border:1rpx solid var(--line);border-radius:22rpx;background:var(--raised);padding:24rpx;width:100%;font-size:28rpx;color:var(--ink)}
+input{height:96rpx}
+textarea{min-height:220rpx;line-height:1.7}
+/* Placeholder layers ignore the textarea's line-height and fall back to ~1.26,
+   lifting placeholder text above the prompt glyph and typed lines. Pin 1.7. */
+.input-placeholder{color:var(--quiet)}
+.textarea-placeholder{color:var(--quiet);line-height:1.7}
+.search{background:var(--surface);border-color:var(--line);height:86rpx;margin:28rpx 0 22rpx;font-size:25rpx}
+.filters{display:flex;gap:10rpx;margin:24rpx 0;flex-wrap:wrap}
+.filter{padding:11rpx 20rpx;border:1rpx solid var(--line);border-radius:18rpx;color:var(--muted);background:var(--surface);font-size:23rpx;transition:background .2s,color .2s}
+.filter.active{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+.empty{text-align:center;padding:64rpx 32rpx;color:var(--muted)}
+.empty-title{font-size:30rpx;color:var(--ink);margin-bottom:14rpx;font-weight:500}
+.empty button{margin-top:28rpx}
+/* mono is also a palette ID on app-surface; only code/metadata descendants use monospace. */
+.app-surface .mono{font:24rpx/1.65 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}
+.body{white-space:pre-wrap;overflow-wrap:anywhere}
+.bottom{margin-top:36rpx;padding-bottom:env(safe-area-inset-bottom)}
+.page button.bottom{margin-top:36rpx;padding-bottom:0}
+.page button.section{margin-top:36rpx;margin-bottom:18rpx}
+.demo-label{color:var(--quiet);text-align:center;font-size:20rpx;margin-top:32rpx}
+.session-meta{display:flex;align-items:center;gap:12rpx;margin-top:18rpx}
+.sticky{position:sticky;top:0;z-index:4;background:var(--canvas);padding-bottom:4rpx}
+.list-row{padding:26rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.list-row:last-child{border:0}
+.spacer{height:22rpx}
+.large .body,.large .card-title{font-size:32rpx}
+.large .subtitle{font-size:28rpx}
+.icon-button{width:76rpx!important;height:76rpx;line-height:74rpx;padding:0!important;border-radius:24rpx;font-size:30rpx;background:var(--surface);color:var(--accent);flex-shrink:0}
+.chip{border-radius:14rpx;background:var(--raised);border:1rpx solid var(--line);font-size:22rpx;color:var(--muted);padding:8rpx 16rpx}
+.operation-note{display:flex;align-items:center;gap:12rpx;color:var(--muted);font-size:21rpx;padding:10rpx 0}
+.operation-dot{height:8rpx;width:8rpx;border-radius:50%;background:var(--accent);animation:breathe 1.4s ease-in-out infinite}
+.skeleton{height:20rpx;border-radius:10rpx;background:var(--raised);margin:18rpx 0;animation:breathe 1.5s ease-in-out infinite}
+.skeleton.short{width:58%}
+.motion-reduced .page{animation:none}
+.motion-reduced .operation-dot{animation:none}
+/* WXSS does not support universal selectors; keep motion overrides on native elements. */
+.motion-off view,.motion-off text,.motion-off button,.motion-off input,.motion-off textarea,.motion-off scroll-view,.motion-off image,
+.is-hidden view,.is-hidden text,.is-hidden button,.is-hidden input,.is-hidden textarea,.is-hidden scroll-view,.is-hidden image{animation:none!important;transition:none!important}
+.motion-reduced view,.motion-reduced text,.motion-reduced button,.motion-reduced input,.motion-reduced textarea,.motion-reduced scroll-view,.motion-reduced image{animation-duration:0.001ms!important;animation-iteration-count:1!important;transition-duration:.12s!important}
+@keyframes breathe{0%,100%{opacity:.45}
+50%{opacity:1}
+}
+
+@keyframes page-enter{from{opacity:0;transform:translateY(14rpx)}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes sheet-enter{from{opacity:0;transform:translateY(50rpx)}
+to{opacity:1;transform:translateY(0)}
+}
+
+/* Operational pages: compact headers, grouped rows, explicit next steps. */
+.screen-head{display:flex;align-items:flex-start;justify-content:space-between;gap:24rpx;margin:6rpx 0 30rpx}
+.screen-head .title{font-size:48rpx;letter-spacing:-1.5rpx}
+.screen-head .subtitle{font-size:23rpx;margin-top:10rpx}
+.screen-kicker{font:18rpx/1.4 ui-monospace,monospace;color:var(--accent);letter-spacing:2rpx;margin-bottom:12rpx}
+.subhead{display:flex;justify-content:space-between;align-items:center;margin:34rpx 0 18rpx;gap:16rpx}
+.subhead .link{flex-shrink:0}
+.section-caption{font-size:22rpx;color:var(--quiet);margin:6rpx 0 20rpx}
+.row-button{border:0;border-radius:0;padding:24rpx 0;background:transparent;text-align:left;font-weight:400;line-height:1.5;white-space:normal}
+.row-button+.row-button{border-top:1rpx solid var(--line-soft)}
+.row-button .tiny{display:block;margin-top:6rpx}
+.surface-list{border:1rpx solid var(--line);border-radius:26rpx;padding:0 24rpx;background:var(--surface);overflow:hidden}
+.resource-symbol{height:72rpx;width:72rpx;display:flex;align-items:center;justify-content:center;border:1rpx solid var(--line);border-radius:20rpx;background:var(--raised);color:var(--accent);font:29rpx ui-monospace,monospace;flex-shrink:0}
+.meta-line{display:flex;gap:12rpx;align-items:center;flex-wrap:wrap;color:var(--quiet);font-size:21rpx;margin-top:8rpx}
+.metric-strip{display:flex;gap:14rpx;margin:26rpx 0}
+.metric-tile{flex:1;min-width:0;padding:22rpx 12rpx;border:1rpx solid var(--line);background:var(--surface);border-radius:24rpx;text-align:center}
+.metric-value{display:block;font:40rpx/1.2 ui-monospace,monospace;margin-bottom:8rpx;color:var(--ink)}
+.metric-label{font-size:21rpx;color:var(--muted)}
+.state-label{font-size:21rpx;color:var(--quiet)}
+.state-label.online{color:var(--positive)}
+.state-label.offline,.state-label.error{color:var(--negative)}
+.inline-status{display:flex;gap:12rpx;align-items:center;padding:18rpx 0;font-size:23rpx;color:var(--muted)}
+.empty-symbol{font:44rpx ui-monospace,monospace;color:var(--accent);margin-bottom:20rpx}
+.compact-empty{padding:38rpx 24rpx;border:1rpx dashed var(--line);border-radius:24rpx;text-align:center;color:var(--muted);font-size:23rpx}
+.compact-empty .empty-title{font-size:27rpx}
+.compact-empty.empty-actions{display:flex;flex-direction:column;align-items:center;gap:24rpx;padding:36rpx 24rpx}
+.compact-empty.empty-actions .empty-title{margin:0}
+.compact-empty.empty-actions button{margin:0;max-width:100%}
+.subtle-button{background:transparent;border:1rpx solid var(--line);color:var(--muted)}
+.segmented{display:flex;gap:4rpx;background:var(--surface);border:1rpx solid var(--line);border-radius:21rpx;padding:5rpx;margin:24rpx 0}
+.segmented button{flex:1;width:auto;padding:0 12rpx;line-height:62rpx;font-size:23rpx;background:transparent;color:var(--quiet);border:0;border-radius:15rpx;font-weight:500}
+.segmented button.selected{color:var(--accent);background:var(--accent-soft)}
+.metadata-value{min-width:0;text-align:right;overflow-wrap:anywhere}
+.flow-overlay{position:fixed;inset:0;z-index:140;display:flex;align-items:flex-end;background:#00000080}
+.flow-sheet{width:100%;max-height:88vh;background:var(--surface);border:1rpx solid var(--line);border-bottom:0;border-radius:36rpx 36rpx 0 0;padding:16rpx 28rpx calc(24rpx + env(safe-area-inset-bottom));animation:sheet-enter .22s ease;overflow:hidden}
+.sheet-grip{width:62rpx;height:6rpx;border-radius:8rpx;background:var(--line);margin:0 auto 18rpx}
+.sheet-title{font-size:32rpx;font-weight:600}
+.flow-sheet button.sheet-close{width:70rpx;height:70rpx;line-height:66rpx;background:transparent;border:0;border-radius:18rpx;font-size:34rpx;color:var(--muted);padding:0}
+.sheet-actions{display:flex;gap:16rpx;margin-top:24rpx}
+.sheet-actions button{flex:1}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:12rpx}
+.menu-grid button{white-space:normal;line-height:1.5;text-align:left;padding:22rpx 18rpx;background:var(--raised);border:1rpx solid var(--line-soft);border-radius:20rpx;font-weight:400}
+.menu-grid button:nth-child(odd):last-child{grid-column:1/-1}
+.menu-grid .menu-label{font-size:25rpx;color:var(--ink);font-weight:500}
+.menu-grid .menu-note{font-size:19rpx;color:var(--quiet);display:block;margin:6rpx 0 0 37rpx}
+.menu-grid .menu-glyph{width:25rpx;flex-shrink:0;text-align:center;color:var(--accent);font:25rpx ui-monospace,monospace}
+.menu-grid .row{justify-content:flex-start;gap:12rpx}
+.sheet-scroll{height:63vh}
+.sheet-group-title{font-size:21rpx;color:var(--quiet);margin:24rpx 0 14rpx}
+.footnote{font-size:21rpx;color:var(--quiet);line-height:1.6;margin-top:16rpx}
+.breadcrumb{display:flex;gap:10rpx;align-items:center;font-size:23rpx;color:var(--quiet);margin-bottom:24rpx}
+.breadcrumb button{border:0;background:transparent;padding:0;line-height:60rpx;font-size:23rpx;color:var(--accent);width:auto}
+.loading-row{display:flex;align-items:center;justify-content:center;gap:14rpx;padding:30rpx;font-size:23rpx;color:var(--muted)}
+.large .row-button,.large .menu-label{font-size:29rpx}
+
+.row-button{display:flex;align-items:center;gap:18rpx}
+.row-button>.grow{min-width:0}
+.segmented>text{flex:1;min-width:0;text-align:center;line-height:62rpx;font-size:23rpx;color:var(--quiet);border-radius:15rpx;padding:0 12rpx}
+.segmented>text.selected{color:var(--accent);background:var(--accent-soft)}
+.breadcrumb>text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0;margin-left:12rpx}
+.breadcrumb>text:last-child{flex:1}
+.breadcrumb{white-space:nowrap}
+.inline-status.online{color:var(--positive)}
+.inline-status.offline{color:var(--quiet)}
+.compact-empty>.tiny{display:block;margin-top:14rpx}
+.screen-head>button{width:auto;flex-shrink:0}
+.surface-list .metadata-value{flex:1}
+.card-title{overflow-wrap:anywhere}
+.flow-overlay .row{min-width:0}
+
+.menu-grid .menu-note{text-align:left}
+.flow-sheet .context-option .grow{text-align:left}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+ui-icon{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;flex:none;line-height:0}
+.row,.screen-head,.subhead{min-width:0}
+.row>view,.screen-head>view{min-width:0}
+.title{overflow-wrap:anywhere}
+.screen-head .title{font-size:46rpx;line-height:1.3;letter-spacing:-1rpx}
+.inline-action{display:inline-flex;align-items:center;justify-content:center;gap:10rpx;vertical-align:middle}
+button.inline-action,button[size='mini'].inline-action{display:inline-flex;align-items:center;justify-content:center;gap:10rpx}
+button.primary.inline-action{color:var(--accent-ink)}
+.row-button{display:flex;width:100%;min-width:0;align-items:center;justify-content:space-between;gap:18rpx;min-height:96rpx}
+.row-button>.row{width:100%;flex:1 1 0;min-width:0}
+.row-button .grow{flex:1 1 0;min-width:0}
+.row-button .chevron,.row-button .state-label{flex:none;margin-left:auto}
+.row-button .state-label{padding-left:16rpx;white-space:nowrap}
+.state-label.error{background:transparent;border:0;padding-top:0;padding-bottom:0;margin-top:0;margin-bottom:0;border-radius:0}
+.row-button .tiny{overflow-wrap:anywhere}
+.row-button>.tiny{flex:none}
+.row-button .metadata-value{min-width:0;flex:1;overflow-wrap:anywhere}
+.metadata-value.inline-action{justify-content:flex-end}
+.chevron,.row-icon,.project-symbol{display:flex;align-items:center;justify-content:center;line-height:1;flex:none}
+.chevron{margin-left:12rpx}
+.resource-symbol{width:72rpx;height:72rpx;border-radius:20rpx}
+.link{display:inline-flex;align-items:center;gap:8rpx;min-height:72rpx}
+.subhead{margin:28rpx 0 12rpx;min-height:64rpx}
+.subhead .link{min-height:64rpx;font-size:22rpx}
+.surface-list{border-color:var(--line-soft);border-radius:26rpx}
+.surface-list .row-button:active{background:var(--raised);transform:none}
+.list-row{min-width:0}
+.list-row.row{gap:18rpx}
+.list-row.row>.badge{max-width:48%;white-space:normal;text-align:right;line-height:1.45}
+.card{box-shadow:none}
+.card .row{gap:14rpx}
+.metric-value{font-variant-numeric:tabular-nums}
+.metric-label.inline-action{gap:4rpx;font-size:20rpx}
+.metric-label ui-icon{opacity:.7}
+.metric-tile{padding:22rpx 8rpx}
+.notice,.error{overflow-wrap:anywhere}
+.segmented{min-width:0}
+.segmented>text{display:flex;align-items:center;justify-content:center;min-height:76rpx;flex:1}
+.segmented button{display:flex;align-items:center;justify-content:center;min-height:76rpx;white-space:nowrap}
+.picker.row{gap:16rpx}
+.picker.row>text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.breadcrumb{display:flex;align-items:center;gap:8rpx;min-height:76rpx;padding:0;margin-bottom:14rpx}
+.breadcrumb>text:last-child{min-width:0}
+.empty-symbol{display:flex;justify-content:center}
+.empty-symbol ui-icon{padding:20rpx;background:var(--raised);border-radius:24rpx}
+.list-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;box-sizing:border-box;min-height:360rpx;padding:52rpx 24rpx;text-align:center}
+.list-empty-icon{display:flex;align-items:center;justify-content:center;width:108rpx;height:108rpx;border-radius:30rpx;background:var(--raised);margin-bottom:28rpx}
+.list-empty-title{font-size:34rpx;line-height:1.5;font-weight:600;color:var(--ink)}
+.list-empty button{margin-top:28rpx}
+.flow-sheet{max-height:90vh;padding:16rpx 28rpx calc(24rpx + env(safe-area-inset-bottom))}
+.flow-sheet .sheet-scroll{height:calc(84vh - 190rpx);min-height:160rpx}
+.sheet-close{display:flex!important;align-items:center;justify-content:center;flex:none;min-width:72rpx;min-height:72rpx}
+button:focus-visible{outline:3rpx solid var(--accent);outline-offset:4rpx}
+.loading-row{display:flex;align-items:center;justify-content:center;gap:16rpx;min-height:108rpx;color:var(--muted);font-size:24rpx}
+@media (max-width:350px){.page{padding-left:28rpx;padding-right:28rpx}
+.screen-head{gap:16rpx}
+.screen-head .title{font-size:44rpx}
+.badge{padding-left:10rpx;padding-right:10rpx}
+.metric-label.inline-action ui-icon{display:none}
+}
+
+
+/* The dock keeps a physical tap target on narrow screens. */
+.app-surface.tabbed{padding-bottom:calc(90px + env(safe-area-inset-bottom))}

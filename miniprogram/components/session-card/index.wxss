@@ -1,0 +1,30 @@
+.session-card{background:var(--surface);border:1rpx solid var(--line);border-radius:24rpx;padding:26rpx;margin:16rpx 0;transition:transform .2s,background .2s}
+.session-card:active{transform:scale(.985);background:var(--raised)}
+.agent-logo{width:32rpx;height:32rpx;opacity:.95}
+.agent-name{font-size:23rpx;color:var(--ink);font-weight:500}
+.project-name{font-size:22rpx;color:var(--quiet)}
+.session-title{font-size:30rpx;font-weight:500;line-height:1.55;margin:20rpx 0 24rpx;word-break:break-all}
+.footer{font-size:21rpx}
+.state{color:var(--muted)}
+.state.running{color:var(--accent)}
+.state.waiting_approval,.state.waiting_input{color:var(--warning)}
+.state.failed{color:var(--negative)}
+.attention{padding:3rpx 12rpx;border-radius:14rpx;background:var(--accent-soft);color:var(--accent);font-size:19rpx}
+.pin{color:var(--accent)}
+.status-dot{width:10rpx;height:10rpx;border-radius:50%;background:var(--quiet)}
+.status-dot.completed{background:var(--positive)}
+.status-dot.failed{background:var(--negative)}
+.status-dot.waiting_input,.status-dot.waiting_approval{background:var(--warning)}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.session-card:active{background:var(--raised)}
+.session-card .row{min-width:0}
+.pin{display:flex;align-items:center;flex:none}
+.session-card .tiny{overflow-wrap:anywhere}
+.swipe-shell{position:relative;overflow:hidden;border-radius:24rpx;margin:16rpx 0}
+.swipe-shell .session-card{position:relative;margin:0}
+.swipe-shell .swipe-revealed{transform:translateX(-304rpx)}
+.swipe-shell .swipe-delete{position:absolute;right:0;top:0;bottom:0;width:152rpx;margin:0;padding:0;border:0;border-radius:0 24rpx 24rpx 0;display:flex;align-items:center;justify-content:center;gap:8rpx;background:var(--negative);color:var(--accent-ink);font-size:30rpx;font-weight:600;line-height:1.4}
+.swipe-shell .swipe-delete::after{border:0}
+.swipe-shell .swipe-rename{position:absolute;right:152rpx;top:0;bottom:0;width:152rpx;margin:0;padding:0;border:0;border-radius:0;display:flex;align-items:center;justify-content:center;background:var(--accent);color:var(--accent-ink);font-size:30rpx;font-weight:600;line-height:1.4}
+.swipe-shell .swipe-rename::after{border:0}

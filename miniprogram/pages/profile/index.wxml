@@ -1,0 +1,23 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+  <view class="page profile-editor">
+    <view class="screen-head"><view class="title">个人资料</view></view>
+    <form bindsubmit="save">
+      <view class="profile-photo">
+        <button class="avatar-chooser" open-type="chooseAvatar" bindchooseavatar="chooseAvatar" disabled="{{loading || saving || avatarBusy}}" aria-label="更换头像">
+          <image src="{{avatarPath}}" mode="aspectFill" class="editor-avatar" />
+        </button>
+        <text class="photo-label">{{avatarBusy ? '正在处理头像…' : '点击更换头像'}}</text>
+        <button class="text-button" bindtap="resetAvatar" disabled="{{loading || saving || avatarBusy}}">使用默认头像</button>
+      </view>
+      <view class="card nickname-field">
+        <view class="field-label">昵称</view>
+        <input type="nickname" name="nickname" value="{{displayName}}" maxlength="32" placeholder="填写昵称" disabled="{{loading || saving}}" aria-label="昵称" />
+      </view>
+      <view wx:if="{{error}}" class="notice warning">{{error}}</view>
+      <button wx:if="{{error}}" class="text-button reload-profile" bindtap="loadProfile" disabled="{{saving || avatarBusy || loading}}">重新加载资料</button>
+      <view class="profile-save"><button class="primary" form-type="submit" loading="{{saving}}" disabled="{{loading || saving || avatarBusy}}">{{loading ? '加载中…' : '保存资料'}}</button></view>
+    </form>
+  </view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

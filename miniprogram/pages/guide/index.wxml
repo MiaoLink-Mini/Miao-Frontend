@@ -1,0 +1,26 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="guide {{step === 1 ? 'guide-installing' : ''}}">
+ <view class="row guide-top"><text class="eyebrow">喵连 / FIRST STEPS</text><button class="quiet-button small" bindtap="finish">跳过</button></view>
+ <view class="guide-scene" wx:for="{{steps}}" wx:key="tag" wx:if="{{index === step}}">
+  <view class="guide-art"><view class="guide-ring"></view><activity-mark wx:if="{{step === 3}}" active="{{pageActive}}" size="large"/><view wx:else class="guide-symbol"><ui-icon name="{{item.icon}}" size="{{step === 1 ? 72 : 120}}" tone="accent" /></view></view>
+  <view class="eyebrow">{{item.tag}}</view><view class="guide-title">{{item.title}}</view><view class="guide-copy">{{item.text}}</view>
+ </view>
+ <view wx:if="{{step === 1}}" class="guide-install">
+  <text class="tiny">需 Node.js 24.1+、npm，以及已登录的 Agent。</text>
+  <view class="install-platforms"><button class="{{installPlatform === 'windows' ? 'primary' : 'secondary'}}" bindtap="selectPlatform" data-platform="windows">Windows</button><button class="{{installPlatform === 'posix' ? 'primary' : 'secondary'}}" bindtap="selectPlatform" data-platform="posix">macOS / Linux</button></view>
+  <text class="install-command" selectable>{{installCommand}}</text>
+  <button class="secondary install-copy" bindtap="copyInstall">复制安装命令</button>
+  <text class="tiny">在电脑{{installPlatform === 'windows' ? ' PowerShell ' : '终端'}}运行，选择「安装 / 更新」。</text>
+ </view>
+  <view wx:if="{{step === steps.length - 1}}" class="guide-install">
+  <text class="install-command" selectable>github.com/MiaoLink-Mini</text>
+  <button class="secondary install-copy" bindtap="copyOrg">复制组织地址</button>
+ </view>
+<view class="guide-footer"><view class="steps"><view wx:for="{{steps}}" wx:key="tag" class="step-dot {{index === step ? 'current' : ''}}"></view></view>
+  <view class="guide-secondary"><button wx:if="{{step > 0}}" class="quiet-button" bindtap="previous">上一步</button><button wx:if="{{step === 2 || step === 3}}" class="quiet-button" bindtap="connect">连接设备</button></view>
+  <button class="primary inline-action" bindtap="next">{{step === steps.length - 1 ? '开始使用' : '继续'}}<ui-icon name="arrow" size="{{30}}" tone="accentInk" /></button>
+ </view>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

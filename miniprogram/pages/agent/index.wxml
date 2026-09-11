@@ -1,0 +1,18 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+<view class="page"><block wx:if="{{agent}}">
+ <view class="screen-head"><view class="grow"><view class="screen-kicker">AGENT</view><view class="title">{{agent.name}}</view></view><image class="agent-logo agent-logo-large" src="{{agent.icon}}" mode="aspectFit" aria-label="{{agent.name}}"/></view>
+ <view class="row"><text class="badge {{agent.stateClass}}">{{demo ? '演示 Agent ' : 'Agent '}}{{agent.stateLabel}}</text><text class="tiny">{{agent.version}}</text></view>
+ <view class="surface-list section"><view class="row-button" bindtap="open" data-url="/pages/node/index?id={{agent.nodeId}}"><text>所属设备</text><view class="metadata-value inline-action"><text>{{node ? node.name : '不可访问'}}</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view><view class="row-button"><text>适配器</text><text class="metadata-value mono">{{agent.adapterVersion}}</text></view></view>
+ <button class="primary" bindtap="open" data-url="{{newUrl}}" disabled="{{!canStart}}">用此 Agent 新建会话</button>
+ <view class="subhead"><text>已开放能力</text><text class="tiny">{{demo ? '演示配置' : '主机上报'}}</text></view>
+ <view class="capability-chips"><text wx:for="{{enabledCapabilities}}" wx:key="key" class="cap-chip">{{item.label}}</text></view>
+ <view wx:if="{{unavailableCapabilities.length}}" class="section"><view class="link" bindtap="toggleCapabilities"><text>{{showUnavailable ? '收起未开放能力' : '查看未开放能力'}}</text><ui-icon name="chevron-down" size="{{26}}" tone="accent" /></view><view wx:if="{{showUnavailable}}" class="capability-chips section"><text wx:for="{{unavailableCapabilities}}" wx:key="key" class="cap-chip muted">{{item.label}}</text></view></view>
+ <view class="surface-list section"><view class="row-button" bindtap="tools" data-kind="extensions"><view class="grow"><view>扩展</view><text class="tiny">Skills · MCP · 插件</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view><view class="row-button" bindtap="tools" data-kind="account"><view class="grow"><view>认证与额度</view><text class="tiny">按会话查看原生状态</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view></view>
+ <view wx:if="{{toolMessage}}" class="notice">{{toolMessage}}</view>
+ <view class="subhead"><text>关联会话</text><view class="link inline-action" bindtap="allSessions"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view><session-card wx:for="{{sessions}}" wx:key="id" session="{{item}}"/><view wx:if="{{!sessions.length}}" class="compact-empty">还没有会话</view>
+</block><view wx:else class="compact-empty">{{loading ? '正在加载 Agent' : 'Agent 不存在或无权访问'}}</view><view wx:if="{{error}}" class="error">{{error}}</view></view>
+<session-picker open="{{toolPicker}}" title="选择要操作的会话" sessions="{{toolSessions}}" bind:close="closeToolPicker" bind:select="chooseToolSession"/>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

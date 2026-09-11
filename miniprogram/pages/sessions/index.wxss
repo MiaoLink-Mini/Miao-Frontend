@@ -1,0 +1,32 @@
+.search-row{display:flex;gap:12rpx;align-items:center}
+.search-box{display:flex;align-items:center;flex:1;min-width:0;border:1rpx solid var(--line);background:var(--surface);border-radius:20rpx;padding-left:20rpx}
+.search-box input.search{height:84rpx;margin:0;padding:0 14rpx;border:0;background:transparent;min-width:0;flex:1}
+.search-symbol{font-size:33rpx;color:var(--quiet)}
+button.clear-search{padding:0;width:62rpx;border:0;background:transparent;font-size:30rpx;color:var(--quiet)}
+button.scope-trigger{border-radius:20rpx;line-height:82rpx;padding:0 20rpx;background:var(--surface);color:var(--muted);font-size:23rpx}
+button.scope-trigger.selected{border-color:var(--accent);color:var(--accent)}
+.organize-tabs{width:100%;margin:24rpx 0 18rpx}
+.filter-scroll{white-space:nowrap;margin:0 0 22rpx}
+.status-filters{display:inline-flex;flex-wrap:nowrap;margin:0;gap:10rpx}
+.status-filters .filter{padding:10rpx 17rpx;font-size:21rpx;border-color:transparent;background:transparent}
+.status-filters .filter.active{color:var(--accent);background:var(--accent-soft)}
+.scope-summary{display:flex;justify-content:space-between;gap:14rpx;font-size:21rpx;color:var(--quiet);margin-bottom:16rpx}
+.scope-summary>text:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.scope-summary .link{font-size:21rpx;flex-shrink:0}
+.screen-head{align-items:center}
+.flow-sheet .picker{font-size:25rpx}
+.flow-sheet{max-height:90vh}
+.flow-sheet .field-label{margin-top:20rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.search-box{min-width:0}
+.search-symbol{display:flex;align-items:center;justify-content:center}
+.scope-trigger{display:flex!important;align-items:center;justify-content:center;min-height:86rpx}
+.filter-body{height:550rpx;max-height:calc(90vh - 270rpx);min-height:160rpx}
+.filter-body .field-label{margin-top:22rpx}
+.filter-body .picker{padding:20rpx;font-size:26rpx}
+.organize-tabs{min-width:0;flex:1}
+.organize-tabs button{flex:1 1 0;min-width:0;padding:0 8rpx;font-size:22rpx}
+.status-filters .filter{display:inline-flex;align-items:center;min-height:70rpx}
+.scope-summary{gap:16rpx}
+.scope-summary>text:first-child{min-width:0;overflow-wrap:anywhere}

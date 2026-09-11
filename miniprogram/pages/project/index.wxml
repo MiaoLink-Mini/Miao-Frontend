@@ -1,0 +1,23 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+<view class="page">
+ <block wx:if="{{project}}">
+  <view class="screen-head"><view class="grow"><view class="screen-kicker">项目</view><view class="title">{{project.name}}</view></view><view class="resource-symbol"><ui-icon name="folder" size="{{32}}" tone="accent" /></view></view>
+  <view class="surface-list"><view class="row-button" bindtap="open" data-url="/pages/node/index?id={{project.nodeId}}"><view class="grow"><text class="tiny">所属设备</text><view>{{node ? node.name : '设备不可访问'}}</view></view><view class="inline-status {{node && node.online ? 'online' : 'offline'}} inline-action"><text>{{node && node.online ? '在线' : '离线'}}</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+   <view wx:if="{{project.description}}" class="row-button"><text class="body muted">{{project.description}}</text></view>
+   <view class="row-button"><text class="tiny">分支</text><text class="metadata-value mono">{{project.branch || '未上报'}}</text></view>
+  </view>
+  <view wx:if="{{!project.valid}}" class="notice warning">工作目录不可用，请在主机检查。</view>
+  <view class="actions section"><button class="primary" disabled="{{!canStart}}" bindtap="open" data-url="{{newUrl}}">新建会话</button><button class="secondary" bindtap="tools" data-kind="files">项目文件</button></view>
+  <view wx:if="{{toolMessage}}" class="notice">{{toolMessage}}</view>
+  <view class="subhead"><text>项目会话</text><view class="link inline-action" bindtap="allSessions"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+  <session-card wx:for="{{sessions}}" wx:key="id" session="{{item}}"/>
+  <view wx:if="{{!sessions.length}}" class="compact-empty">这个项目还没有活跃会话</view>
+ </block>
+ <view wx:else class="compact-empty">{{loading ? '正在加载项目' : '项目不可访问'}}<button class="secondary" bindtap="open" data-url="/pages/projects/index">返回项目</button></view>
+ <view wx:if="{{error}}" class="error">{{error}}</view>
+</view>
+<session-picker open="{{toolPicker}}" title="选择文件所属会话" sessions="{{toolSessions}}" bind:close="closeToolPicker" bind:select="chooseToolSession"/>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

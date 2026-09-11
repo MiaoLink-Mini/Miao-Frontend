@@ -1,0 +1,25 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page">
+  <view class="eyebrow">CAPABILITY DIRECTORY</view>
+  <view class="reference-heading"><ui-icon name="extension" size="{{44}}" tone="accent" /><view class="title">功能与支持</view></view>
+  <view class="subtitle">18 个功能域 · 194 项需求逐项登记</view>
+  <view class="notice warning" wx:if="{{demo}}">演示不代表真实 Agent 已支持。</view>
+  <view class="notice">只读目录。实现、适配与验收分开记录。</view>
+  <input class="search" value="{{query}}" bindinput="input" placeholder="搜索功能、入口或编号，如 G13"/>
+  <text class="tiny">匹配 {{total}} 项 · 未接入 {{missingCount}} · 扩展规划 {{plannedCount}} · 部分实现 {{partialCount}}</text>
+  <view wx:for="{{groups}}" wx:key="id" wx:for-item="group">
+    <view class="section-title section">{{group.title}}</view>
+    <view class="card">
+      <view wx:for="{{group.items}}" wx:key="id" class="list-row row gap" bindtap="open" data-url="/pages/requirement/index?id={{item.id}}">
+        <view class="grow">
+          <view>{{item.name}}</view>
+          <text class="tiny">{{item.id}} · {{item.entry}}</text>
+        </view>
+        <text class="badge">{{item.status}}</text>
+      </view>
+    </view>
+  </view>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

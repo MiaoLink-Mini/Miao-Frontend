@@ -1,0 +1,12 @@
+
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.reference-heading{display:flex;align-items:center;gap:16rpx}
+.title{font-size:44rpx;letter-spacing:-1rpx}
+.subtitle{font-size:22rpx}
+.notice{font-size:22rpx}
+.card{padding:0 22rpx;border-radius:22rpx}
+.list-row .badge{max-width:170rpx;white-space:normal;line-height:1.45;text-align:center}
+.list-row .grow>view{font-size:25rpx}
+.list-row .tiny{display:block;margin-top:8rpx}
+.list-row:active{background:var(--raised)}

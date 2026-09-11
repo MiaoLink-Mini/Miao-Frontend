@@ -1,0 +1,26 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}} tabbed" style="{{themeStyle}}">
+  <connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+  <view class="page {{preferences.largeText ? 'large' : ''}}">
+    <view class="screen-head"><view><view class="screen-kicker">喵连</view><view class="title">工作台</view></view><button class="primary small inline-action" bindtap="open" data-url="{{createTarget}}"><ui-icon name="plus" size="{{30}}" tone="accentInk" /> 新会话</button></view>
+    <view class="metric-strip">
+      <button class="metric-tile" bindtap="activeSessions"><text class="metric-value">{{activeCount}}</text><view class="metric-label inline-action"><text>进行中</text><ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view></button>
+      <button class="metric-tile {{pendingCount ? 'needs-attention' : ''}}" bindtap="pendingRequests"><text class="metric-value">{{pendingCount}}</text><view class="metric-label inline-action"><text>待处理</text><ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view></button>
+      <button class="metric-tile" bindtap="open" data-url="/pages/nodes/index"><text class="metric-value">{{onlineCount}}</text><view class="metric-label inline-action"><text>设备在线</text><ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view></button>
+    </view>
+    <block wx:if="{{attention.length}}">
+      <view class="subhead"><text class="section-title">需要你确认</text><view class="link inline-action" bindtap="pendingRequests"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+      <view class="attention-list"><button wx:for="{{attention}}" wx:key="id" class="attention-row" bindtap="open" data-url="/pages/request/index?id={{item.id}}"><view class="row gap"><view class="attention-symbol"><ui-icon name="{{item.kind === 'approval' ? 'shield' : 'help'}}" size="{{34}}" tone="accent" /></view><view class="grow"><view class="card-title">{{item.title}}</view><text class="tiny">{{item.session && item.session.project ? item.session.project.name : ''}} · {{item.session && item.session.agent ? item.session.agent.name : ''}}</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view></button></view>
+    </block>
+    <view class="subhead"><text class="section-title">最近会话</text><view class="link inline-action" bindtap="allSessions"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+    <session-card wx:for="{{recent}}" wx:key="id" session="{{item}}"/>
+    <view wx:if="{{!recent.length}}" class="compact-empty empty-actions"><view class="empty-title">还没有会话</view></view>
+    <view class="subhead"><text class="section-title">我的设备</text><view class="link inline-action" bindtap="open" data-url="/pages/nodes/index"><text>管理</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+    <view wx:if="{{visibleNodes.length}}" class="surface-list"><button wx:for="{{visibleNodes}}" wx:key="id" class="row-button" bindtap="open" data-url="/pages/node/index?id={{item.id}}"><view class="row gap"><view class="resource-symbol"><ui-icon name="monitor" size="{{32}}" tone="accent" /></view><view class="grow"><view class="card-title">{{item.name}}</view><text class="tiny">{{item.platform}} · {{item.online ? item.active + ' 个进行中' : item.lastSeenLabel}}</text></view><text class="state-label {{item.online ? 'online' : ''}}">{{item.online ? '在线' : '离线'}}</text></view></button></view>
+    <button wx:else class="secondary inline-action" bindtap="open" data-url="/pages/pair/index"><ui-icon name="plus" size="{{30}}" tone="accent" /> 连接设备</button>
+    <view class="subhead"><text class="section-title">项目</text><view class="link inline-action" bindtap="open" data-url="/pages/projects/index"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+    <view wx:if="{{recentProjects.length}}" class="surface-list"><button wx:for="{{recentProjects}}" wx:key="id" class="row-button" bindtap="open" data-url="/pages/project/index?id={{item.id}}"><view class="row gap"><view class="project-symbol"><ui-icon name="folder" size="{{32}}" tone="accent" /></view><view class="grow"><view class="card-title">{{item.name}}</view><text wx:if="{{item.branch}}" class="tiny">{{item.branch}}</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view></button></view>
+    <view wx:else class="compact-empty"><view class="empty-title">暂无项目</view></view>
+  </view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

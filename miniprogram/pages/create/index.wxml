@@ -1,0 +1,25 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<import src="../../components/operation.wxml"/>
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+  <view class="page create-page">
+    <view class="screen-head"><view><view class="screen-kicker">NEW SESSION</view><view class="title">新建会话</view></view></view>
+    <view class="subhead"><text class="section-title">工作环境</text></view>
+    <view class="surface-list environment">
+      <picker range="{{nodes}}" range-key="name" value="{{nodeIndex < 0 ? 0 : nodeIndex}}" bindchange="selectNode" disabled="{{busy || unknown || !nodes.length}}"><view class="environment-row row gap"><text class="environment-label">设备</text><view class="grow"><view>{{selectedNode ? selectedNode.name : '选择设备'}}</view><text wx:if="{{selectedNode}}" class="tiny">{{selectedNode.platform}} · {{selectedNode.online ? '在线' : '离线'}}</text></view><view class="chevron"><ui-icon name="chevron-down" size="{{32}}" tone="quiet" /></view></view></picker>
+      <picker range="{{projects}}" range-key="name" value="{{projectIndex < 0 ? 0 : projectIndex}}" bindchange="selectProject" disabled="{{busy || unknown || !projects.length}}"><view class="environment-row row gap"><text class="environment-label">项目</text><view class="grow"><view>{{selectedProject ? selectedProject.name : '选择项目'}}</view><text wx:if="{{selectedProject && selectedProject.branch}}" class="tiny mono">{{selectedProject.branch}}</text></view><view class="chevron"><ui-icon name="chevron-down" size="{{32}}" tone="quiet" /></view></view></picker>
+    </view>
+    <view wx:if="{{!nodes.length}}" class="inline-status"><view class="link inline-action" bindtap="open" data-url="/pages/pair/index"><text>连接设备</text><ui-icon name="arrow" size="{{28}}" tone="accent" /></view></view>
+    <view wx:if="{{nodes[nodeIndex] && !nodes[nodeIndex].online}}" class="notice warning">设备离线，上线后才能开始。</view>
+    <view wx:if="{{selectedNode && !projects.length}}" class="inline-status"><text class="grow">请在此主机登记项目</text><view class="link inline-action" bindtap="open" data-url="/pages/node/index?id={{nodeId}}"><text>设备详情</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+    <view class="subhead"><text class="section-title">Agent</text></view>
+    <view class="agent-options"><button wx:for="{{agents}}" wx:key="id" class="agent-option {{agentId === item.id ? 'selected' : ''}}" bindtap="selectAgent" data-id="{{item.id}}" disabled="{{busy || unknown || item.state !== 'ready'}}"><view class="row gap"><image class="agent-logo" src="{{item.icon}}" mode="aspectFit"/><text class="grow">{{item.name}}</text><view class="agent-check"><ui-icon name="check" size="{{30}}" tone="accent" wx:if="{{agentId === item.id}}"/><text wx:elif="{{item.state !== 'ready'}}">{{item.stateLabel}}</text></view></view></button></view>
+    <view wx:if="{{!agents.length}}" class="compact-empty">这台设备还没有 Agent</view>
+    <button wx:if="{{!demo && selectedAgent.capabilities.historyImport}}" class="secondary section" bindtap="browseHistory" disabled="{{!ready || busy || unknown}}">浏览本地历史</button>
+    <view class="subhead"><text class="section-title">任务（可选）</text></view>
+    <view class="task-input"><textarea value="{{prompt}}" bindinput="input" placeholder="可选，留空创建会话后再输入任务…" maxlength="4000" cursor-spacing="24" disabled="{{busy || unknown}}"/><view class="row task-counter"><text class="tiny">{{prompt.length}} / 4000</text></view></view>
+    <template is="operation" data="{{busy,receipt,error,unknown}}"/>
+    <view class="create-submit"><button class="primary inline-action" bindtap="submit" disabled="{{!ready || busy || unknown}}" loading="{{busy}}">{{busy ? '正在创建' : prompt ? '创建并开始' : '创建会话'}}<ui-icon name="arrow" size="{{30}}" tone="accentInk" /></button></view>
+    <view wx:if="{{demo}}" class="demo-label">演示环境 · 不执行真实任务</view>
+  </view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

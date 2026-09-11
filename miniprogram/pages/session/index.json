@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "会话详情",
+  "usingComponents": {
+    "connection-bar": "/components/connection-bar/index",
+    "ui-icon": "/components/ui-icon/index",
+    "event-card": "/components/event-card/index",
+    "activity-mark": "/components/activity-mark/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

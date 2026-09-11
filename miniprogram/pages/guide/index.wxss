@@ -1,0 +1,27 @@
+.guide{min-height:100vh;padding:32rpx 42rpx calc(24rpx + env(safe-area-inset-bottom));box-sizing:border-box;display:flex;flex-direction:column}
+.quiet-button{background:transparent;font-weight:400;color:var(--muted)}
+.guide-art{height:430rpx;display:flex;align-items:center;justify-content:center;position:relative}
+.guide-ring{position:absolute;width:300rpx;height:300rpx;border:1rpx solid var(--line);border-radius:36%;transform:rotate(20deg)}
+.guide-symbol{display:flex;align-items:center;justify-content:center;line-height:1}
+.guide-title{font-size:46rpx;letter-spacing:-1rpx;font-weight:500;line-height:1.4;margin:20rpx 0}
+.guide-copy{font-size:28rpx;color:var(--muted);line-height:1.7;max-width:590rpx}
+.guide-footer{margin-top:auto;padding-top:40rpx}
+.guide-secondary{display:flex;gap:18rpx;margin-bottom:20rpx}
+.guide-secondary:empty{display:none}
+.guide-secondary button{flex:1;min-width:0;margin:0}
+.steps{display:flex;gap:12rpx;justify-content:center;margin-bottom:28rpx}
+.step-dot{width:10rpx;height:10rpx;border-radius:10rpx;background:var(--line);transition:width .3s}
+.step-dot.current{width:42rpx;background:var(--accent)}
+.guide-installing .guide-art{height:156rpx}
+.guide-installing .guide-ring{width:114rpx;height:114rpx}
+.guide-installing .guide-title{font-size:40rpx;margin:12rpx 0}
+.guide-installing .guide-copy{display:none}
+.guide-install{margin-top:18rpx}
+.guide-install .tiny{display:block;color:var(--muted);line-height:1.6}
+.install-platforms{display:flex;gap:14rpx;margin:18rpx 0}
+.install-platforms button{flex:1;min-width:0;margin:0;padding:12rpx 8rpx;font-size:24rpx;line-height:1.6}
+.install-command{display:block;padding:20rpx;border:1rpx solid var(--line);border-radius:20rpx;background:var(--surface);color:var(--ink);font-family:monospace;font-size:22rpx;line-height:1.6;white-space:pre-wrap;word-break:break-all}
+.guide-install .install-copy{margin:18rpx 0;padding:16rpx;line-height:1.5;min-height:72rpx}
+.guide-installing .guide-footer{padding-top:24rpx}
+@media(max-height:680px){.guide-art{height:300rpx}.guide-ring{width:250rpx;height:250rpx}.guide{padding-top:24rpx}.guide-footer{padding-top:28rpx}.guide-installing .guide-art{height:100rpx}.guide-installing .guide-ring{width:82rpx;height:82rpx}.guide-installing .guide-title{font-size:36rpx}}
+@media(max-height:500px){.guide-art{height:180rpx}.guide-ring{width:150rpx;height:150rpx}.guide-title{font-size:40rpx}.guide-copy{font-size:24rpx}.guide-footer{padding-top:18rpx}.guide-installing .guide-art{display:none}}

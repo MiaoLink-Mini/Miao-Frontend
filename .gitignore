@@ -1,0 +1,17 @@
+node_modules/
+project.private.config.json
+*.log
+coverage/
+test-results/
+.DS_Store
+
+source-history.bundle
+.env
+.env.*
+!.env.example
+.runtime/
+*.sqlite
+*.sqlite-*
+*.db
+*.db-*
+config.local.json

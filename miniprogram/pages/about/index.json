@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "关于",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

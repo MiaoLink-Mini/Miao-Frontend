@@ -1,0 +1,22 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page">
+  <block wx:if="{{requirement}}">
+    <text class="eyebrow">{{requirement.id}} / {{requirement.scope}}</text>
+    <view class="title section">{{requirement.name}}</view>
+    <text class="badge">{{requirement.status}}</text>
+    <view class="card section">
+      <view class="field-label">产品入口</view>
+      <text>{{requirement.entry}}</text>
+      <view class="field-label">当前实现</view>
+      <text class="body">{{requirement.implementation}}</text>
+      <view class="field-label">验收条件</view>
+      <text class="body">{{requirement.criterion}}</text>
+    </view><view class="subhead">能力记录</view><view class="surface-list"><view class="record-row"><text class="tiny">审查日期</text><text class="body">{{requirement.record.reviewDate}}</text></view><view class="record-row"><text class="tiny">版本验收</text><text class="body">{{requirement.record.targetVersion}}</text></view><view class="record-row"><text class="tiny">运行模式</text><text class="body">{{requirement.record.runtimeMode}}</text></view><view class="record-row"><text class="tiny">协议映射</text><text class="body">{{requirement.record.mapping}}</text></view><view class="record-row"><text class="tiny">适配范围</text><text class="body">{{requirement.record.adapterScope}}</text></view><view class="record-row"><text class="tiny">验证状态</text><text class="body">{{requirement.record.validation}}</text></view>    </view>
+    <view class="notice">可用能力以主机上报与验证结果为准。</view>
+    <text class="tiny">来源：{{requirement.source}}</text>
+  </block>
+  <view wx:else class="empty">未找到该功能记录。</view>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

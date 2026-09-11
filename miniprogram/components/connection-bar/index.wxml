@@ -1,0 +1,1 @@
+<view wx:if="{{state !== 'online'}}" class="bar"><view class="connection-dot"></view><text class="grow">{{label}}</text><button class="bar-action" size="mini" bindtap="recover">重连</button></view>

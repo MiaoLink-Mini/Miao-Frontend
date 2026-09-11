@@ -1,0 +1,23 @@
+{
+  "name": "golink-frontend",
+  "version": "0.2.0",
+  "private": true,
+  "description": "喵连 原生微信小程序 · demo / live 双数据源（weagent/1 协议）",
+  "scripts": {
+    "icons": "node scripts/generate-icons.js",
+    "sync:contract": "node scripts/sync-contract.js",
+    "check:contract": "node scripts/sync-contract.js --check",
+    "test:simulator": "node scripts/verify-simulator.js",
+    "test:slash": "node scripts/verify-slash-simulator.js",
+    "test:request": "node scripts/verify-request-simulator.js",
+    "test:layout": "node scripts/verify-layout-simulator.js",
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check-project.js",
+    "build": "node scripts/sync-contract.js --check && node scripts/check-project.js && node --test tests/*.test.js",
+    "test:integration": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/test-integration.ps1",
+    "test:live-simulator": "node scripts/verify-live-simulator.js"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

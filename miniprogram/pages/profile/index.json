@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "个人资料",
+  "usingComponents": {
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

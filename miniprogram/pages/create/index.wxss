@@ -1,0 +1,31 @@
+.environment-row{min-height:116rpx;padding:18rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.environment picker:last-child .environment-row{border:0}
+.environment-label{font-size:23rpx;color:var(--quiet);width:62rpx}
+.environment-row .tiny{display:block;font-size:20rpx;margin-top:4rpx}
+.environment-row .grow{font-size:27rpx}
+.agent-options{display:flex;flex-direction:column;gap:12rpx}
+.agent-option{text-align:left;line-height:1.5;padding:22rpx 24rpx;white-space:normal;background:var(--surface);border-radius:22rpx;font-size:25rpx;font-weight:500}
+.agent-option.selected{border-color:var(--accent);background:var(--accent-soft)}
+.agent-check{font-size:21rpx;color:var(--accent)}
+.task-input{padding:22rpx;border:1rpx solid var(--line);background:var(--surface);border-radius:26rpx}
+.task-input textarea{min-height:200rpx;height:240rpx;padding:0;border:0;background:transparent;font-size:27rpx}
+.task-input>.row{margin-top:18rpx}
+.task-input .tiny{font-size:19rpx}
+.create-submit{margin-top:28rpx}
+.task-counter{justify-content:flex-end}
+.subhead{margin-top:28rpx}
+
+.agent-option .grow{text-align:left}
+.task-input textarea{resize:none}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.agent-check{display:flex;width:36rpx;height:36rpx;align-items:center;justify-content:center;flex:none}
+.agent-options .agent-option{min-height:98rpx;padding:20rpx 22rpx}
+.agent-option .row{min-width:0;width:100%}
+.environment-label{flex:none}
+.environment-row .chevron{margin-left:auto}
+.environment-row .grow>view{overflow-wrap:anywhere}
+.create-submit button{min-height:90rpx}
+.task-input{border-color:var(--line)}
+
+.agent-check{width:auto;min-width:36rpx;max-width:144rpx}.agent-check text{font-size:21rpx;white-space:normal;line-height:1.4;text-align:right}

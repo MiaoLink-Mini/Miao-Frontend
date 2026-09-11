@@ -1,0 +1,1 @@
+<view class="activity-mark {{size}} {{active ? 'active' : ''}} {{reduced ? 'reduced' : ''}}" aria-hidden="true"><view class="bloom"><view wx:for="{{spokes}}" wx:key="*this" class="spoke" style="transform:rotate({{item * 45}}deg)"></view></view><view class="bloom-core"></view></view>

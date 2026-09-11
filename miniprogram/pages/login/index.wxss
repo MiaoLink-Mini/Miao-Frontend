@@ -1,0 +1,21 @@
+.welcome{min-height:100vh;padding:28rpx 42rpx 32rpx;display:flex;flex-direction:column;box-sizing:border-box;overflow:hidden}
+.wordmark{font-weight:600;font-size:38rpx;letter-spacing:2rpx}
+.welcome-art{position:relative;height:390rpx;display:flex;justify-content:center;align-items:center}
+.welcome-art activity-mark{transform:scale(1.25)}
+.orbit{position:absolute;width:286rpx;height:286rpx;border-radius:50%;border:1rpx solid var(--line);transform:rotate(-25deg) scaleX(1.8)}
+.orbit-two{transform:rotate(36deg) scaleX(1.6);opacity:.5}
+.welcome-heading{font-size:59rpx;font-weight:500;line-height:1.55;letter-spacing:-2rpx}
+.muted-heading{color:var(--quiet)}
+.welcome-copy{font-size:26rpx;color:var(--muted);margin-top:24rpx}
+.welcome-bottom{margin-top:auto;padding-top:60rpx;padding-bottom:env(safe-area-inset-bottom)}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.welcome .icon-button{display:flex;align-items:center;justify-content:center}
+.welcome-bottom .primary{min-height:94rpx}
+@media(max-height:660px){.welcome-art{height:240rpx}
+.welcome{padding-top:28rpx}
+.welcome-heading{font-size:54rpx}
+}
+
+.connection-detail{font-size:23rpx;line-height:1.5;color:var(--muted);overflow-wrap:anywhere;margin:16rpx 0}
+.welcome-bottom button.connection-copy{line-height:64rpx;margin:12rpx 0 20rpx}

@@ -1,0 +1,26 @@
+.attention-count{font-family:monospace;font-size:44rpx;text-align:right;color:var(--accent)}
+.attention-count text{display:block;font-size:20rpx;color:var(--muted);font-family:inherit;margin-top:5rpx}
+.segmented{margin-bottom:24rpx}
+.filters{margin:0 0 26rpx;flex-wrap:wrap}
+.request-card{border-left:3rpx solid var(--warning);padding:26rpx}
+.request-card.question{border-left-color:var(--accent)}
+.request-title{font-size:29rpx;line-height:1.5;margin-top:20rpx}
+.request-summary{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;overflow:hidden;line-height:1.6;font-size:25rpx}
+.request-context{display:flex;align-items:center;gap:18rpx;padding-top:20rpx;margin-top:20rpx;border-top:1rpx solid var(--line)}
+.context-title{font-size:23rpx;white-space:nowrap;text-overflow:ellipsis;overflow:hidden;margin-top:8rpx;color:var(--muted)}
+.notice-row{padding:26rpx;border-bottom:1rpx solid var(--line)}
+.notice-row:last-child{border-bottom:0}
+.notice-row .card-title{font-size:27rpx}
+.unread-dot{width:12rpx;height:12rpx;border-radius:50%;background:var(--accent);flex-shrink:0}
+.empty-symbol{font-size:46rpx;margin-bottom:20rpx;color:var(--positive)}
+
+button.attention-count{margin:0;padding:0;background:transparent;border:0;line-height:1.2;width:auto;font-weight:400}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.request-card{border-radius:24rpx}
+.request-card:active{background:var(--raised)}
+.request-summary{line-height:1.6}
+.notice-row .row>text:first-child{min-width:0;overflow-wrap:anywhere}
+.notice-row .row .tiny{flex:none}
+.filter{display:inline-flex;align-items:center;min-height:70rpx}
+.empty-symbol{margin-bottom:24rpx}

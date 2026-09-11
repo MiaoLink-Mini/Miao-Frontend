@@ -1,0 +1,10 @@
+<view wx:if="{{!hidden}}" class="tab-shell motion-{{motionMode}}" style="{{themeStyle}}">
+ <view class="tab-dock"><view class="tab-track">
+  <view class="tab-slider" style="transform:translateX({{selected * 100}}%)" aria-hidden="true"><view class="tab-slider-fill"></view></view>
+  <button wx:for="{{tabs}}" wx:key="url" size="mini" class="tab-item {{selected === index ? 'current' : ''}}" bindtap="switch" data-index="{{index}}" aria-label="{{item.label}}{{index === 2 && pendingCount ? ', ' + pendingCount : ''}}" aria-current="{{selected === index ? 'page' : 'false'}}" hover-class="tab-pressed">
+   <view class="tab-icon-wrap"><ui-icon name="{{item.icon}}" size="{{40}}" tone="{{selected === index ? 'accent' : 'quiet'}}"/>
+    <text wx:if="{{index === 2 && pendingCount > 0}}" class="tab-badge">{{pendingCount > 99 ? '99+' : pendingCount}}</text>
+   </view><text class="tab-text">{{item.label}}</text>
+  </button>
+ </view></view>
+</view>

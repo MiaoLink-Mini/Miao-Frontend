@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "诊断与操作记录",
+  "usingComponents": {
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

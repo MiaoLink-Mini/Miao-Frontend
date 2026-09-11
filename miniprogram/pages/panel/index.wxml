@@ -1,0 +1,129 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page">
+  <view wx:if="{{error}}" class="error">{{error}}</view>
+  <view wx:if="{{sessionId}}" class="breadcrumb"><button bindtap="returnToSession" size="mini" class="inline-action"><ui-icon name="arrow-left" size="{{28}}" tone="accent"/><text>回到对话</text></button><text>/</text><text>{{session.project.name}}</text></view>
+  <view class="title">{{title}}</view>
+
+  <view wx:if="{{invalid}}" class="empty">
+    <view class="empty-symbol"><ui-icon name="warning" size="{{40}}" tone="accent" /></view>
+    <view class="empty-title">资源不可访问</view>
+    <text>会话、项目或 Agent 不存在，或权限已失效。</text>
+  </view>
+  <block wx:else>
+    <view wx:if="{{session}}" class="context-bar">
+      <view class="context-item"><ui-icon name="monitor" size="{{26}}" tone="quiet" /><text>{{session.node.name}}</text></view>
+      <view class="context-item"><ui-icon name="folder" size="{{26}}" tone="quiet" /><text>{{session.project.name}}</text></view>
+      <view class="context-item"><ui-icon name="terminal" size="{{26}}" tone="quiet" /><text>{{session.agent.name}}</text></view>
+    </view>
+
+    <block wx:if="{{kind === 'menu'}}">
+      <view wx:for="{{menuGroups}}" wx:key="title" wx:for-item="group"><view class="subhead"><text class="section-title">{{group.title}}</text></view><view class="menu-grid"><button wx:for="{{group.items}}" wx:key="kind" bindtap="open" data-url="{{item.url}}"><view class="row"><view class="menu-glyph"><ui-icon name="{{item.icon}}" size="{{36}}" tone="accent" /></view><text class="menu-label">{{item.label}}</text></view><text class="menu-note">{{item.note}}</text></button></view></view>
+    </block>
+    <block wx:elif="{{kind === 'plan' && detail}}">
+      <view class="card section plan-card">
+        <view class="plan-head">
+          <view class="compact-glyph"><ui-icon name="plan" size="{{44}}" tone="accent" /></view>
+          <view class="compact-head-text">
+            <view class="compact-title">本轮执行计划</view>
+            <view class="compact-sub">{{detail.text || '按步骤跟踪本轮执行进度'}}</view>
+          </view>
+        </view>
+        <view class="plan-steps">
+          <view wx:for="{{detail.steps}}" wx:key="label" class="plan-step">
+            <view class="plan-step-icon"><ui-icon name="{{item.state === 'completed' ? 'check-circle' : item.state === 'running' ? 'activity' : 'clock'}}" size="{{30}}" tone="{{item.state === 'completed' ? 'positive' : item.state === 'running' ? 'accent' : 'quiet'}}" /></view>
+            <text class="plan-step-label">{{item.label}}</text>
+            <text class="plan-step-state {{item.state}}">{{item.state === 'completed' ? '已完成' : item.state === 'running' ? '进行中' : '未开始'}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{kind === 'diff' && detail}}">
+      <view wx:for="{{files}}" wx:key="id" wx:for-item="file" wx:for-index="fileIndex" class="card diff-file">
+        <view class="diff-head" bindtap="toggleFile" data-index="{{fileIndex}}">
+          <view class="diff-file-glyph"><ui-icon name="file" size="{{30}}" tone="accent" /></view>
+          <text class="mono grow">{{file.name}}</text>
+          <view class="diff-toggle"><ui-icon name="{{collapsed[fileIndex] ? 'chevron-down' : 'chevron-up'}}" size="{{30}}" tone="quiet" /></view>
+        </view>
+        <code-diff wx:if="{{!collapsed[fileIndex]}}" patch="{{file.patch}}" truncated="{{file.truncated}}"/>
+        <view class="link diff-open" bindtap="openFile" data-id="{{file.id}}">全屏查看<ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view>
+      </view>
+
+    </block>
+    <block wx:elif="{{kind === 'usage' && detail}}">
+      <view class="usage-tiles">
+        <view class="metric-tile"><view class="metric-value">{{detail.input}}</view><view class="metric-label">输入 tokens</view></view>
+        <view class="metric-tile"><view class="metric-value">{{detail.output}}</view><view class="metric-label">输出 tokens</view></view>
+        <view class="metric-tile"><view class="metric-value usage-cost">{{detail.costLabel || '—'}}</view><view class="metric-label">预估费用</view></view>
+      </view>
+      <view class="card section usage-extra">
+        <view class="row list-row usage-row">
+          <text class="grow">上下文占用</text>
+          <text class="tiny">{{detail.contextLabel || '尚未上报'}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:elif="{{kind === 'config' || kind === 'compact'}}">
+      <view wx:if="{{nativeReason}}" class="notice warning">{{nativeReason}}</view>
+      <view class="card section">
+        <block wx:if="{{kind === 'config'}}">
+          <view class="model-head"><view class="model-head-main"><view class="model-glyph"><ui-icon name="spark" size="{{40}}" tone="accent" /></view><view class="compact-head-text"><view class="compact-title">模型目录</view><view class="compact-sub">选择下一轮使用的模型</view></view></view><button size="mini" class="quiet-button small inline-action model-refresh" disabled="{{nativeReason || busy || unknown}}" loading="{{busy}}" bindtap="loadModels"><ui-icon name="refresh" size="{{26}}" tone="accent" /><text>刷新</text></button></view>
+          <view wx:if="{{busy && !modelsLoaded}}" class="muted">正在读取模型列表…</view>
+          <view wx:if="{{modelsLoaded && !models.length}}" class="notice">主机未返回可选模型。</view>
+          <view wx:if="{{models.length}}" class="surface-list model-list"><view wx:for="{{models}}" wx:key="id" class="row-button model-row {{selectedModel === item.id ? 'model-current' : ''}}" bindtap="chooseModel" data-id="{{item.id}}" role="button" aria-label="切换到模型 {{item.label}}"><text class="grow model-name">{{item.label}}</text><view class="model-check"><ui-icon name="check-circle" size="{{34}}" tone="accent" wx:if="{{selectedModel === item.id}}"/></view></view></view>
+        </block>
+        <block wx:else>
+          <view class="compact-head">
+            <view class="compact-glyph"><ui-icon name="archive" size="{{44}}" tone="accent" /></view>
+            <view class="compact-head-text">
+              <view class="compact-title">原生上下文整理</view>
+              <view class="compact-sub">仅在本轮结束后执行</view>
+            </view>
+          </view>
+          <view class="compact-steps">
+            <view class="compact-step">
+              <view class="compact-step-glyph"><ui-icon name="enter" size="{{30}}" tone="quiet" /></view>
+              <view class="compact-step-text"><view class="compact-step-name">请求受理</view><text class="compact-step-desc">主机接收压缩请求后即时确认</text></view>
+            </view>
+            <view class="compact-step">
+              <view class="compact-step-glyph"><ui-icon name="check-circle" size="{{30}}" tone="quiet" /></view>
+              <view class="compact-step-text"><view class="compact-step-name">压缩完成</view><text class="compact-step-desc">本轮结束时单独确认结果</text></view>
+            </view>
+          </view>
+          <button class="primary compact-action" disabled="{{nativeReason || busy || unknown}}" loading="{{busy}}" bindtap="compact">确认并压缩</button>
+          <view class="link section" bindtap="returnToSession">回到对话查看进度<ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view>
+        </block>
+        <view wx:if="{{kind === 'config'}}" class="link section" bindtap="openThinking" role="button" aria-disabled="{{nativeReason || busy || unknown || !session.capabilities.workspace}}">选择思考档位<ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view>
+        <view wx:if="{{modelNotice}}" class="notice">{{modelNotice}}</view>
+        <view wx:if="{{receipt && kind !== 'config'}}" class="tiny section">{{receipt}}</view>
+        <button wx:if="{{unknown}}" class="secondary section" disabled="{{busy}}" bindtap="reconcile">查询结果</button>
+      </view>
+    </block>
+    <block wx:elif="{{kind === 'queue'}}">
+      <view wx:for="{{queue}}" wx:key="id" class="card section queue-card">
+        <view class="queue-head"><view class="queue-glyph"><ui-icon name="queue" size="{{32}}" tone="accent" /></view><text class="badge running">等待执行</text></view>
+        <view class="body queue-body">{{item.text}}</view>
+      </view>
+      <view wx:if="{{!queue.length}}" class="card empty section">
+        <view class="empty-symbol"><ui-icon name="queue" size="{{40}}" tone="accent" /></view>
+        <view class="empty-title">没有待执行消息</view>
+      </view>
+    </block>
+    <block wx:elif="{{kind !== 'menu'}}">
+      <view class="card empty section">
+        <view class="empty-symbol"><ui-icon name="{{kind === 'plan' ? 'plan' : kind === 'diff' ? 'code' : kind === 'usage' ? 'activity' : 'clock'}}" size="{{40}}" tone="accent" /></view>
+        <view class="empty-title">{{kind === 'plan' ? '暂无计划' : kind === 'diff' ? '暂无变更' : kind === 'usage' ? '暂无用量' : '等待运行时能力接入'}}</view>
+        <text>{{kind === 'history' ? '已有消息可在会话时间线浏览。恢复、分支、导入和导出尚未接入。' : kind === 'input' ? '图片、文件引用和命令目录尚未返回，当前只开放文字输入。' : kind === 'checkpoints' ? '未收到可用检查点，无法预览或执行文件还原。' : kind === 'plan' ? '本轮还没有计划步骤。' : kind === 'diff' ? '本轮还没有代码变更。' : kind === 'usage' ? '本轮还没有用量统计。' : '缺少真实运行时数据与已验证的动作，不会显示为已执行。'}}</text>
+      </view>
+    </block>
+    <view wx:if="{{requirements.length}}" class="section-title section">相关功能与限制</view>
+    <view wx:if="{{requirements.length}}" class="card">
+      <view wx:for="{{requirements}}" wx:key="id" class="list-row row gap" bindtap="open" data-url="/pages/requirement/index?id={{item.id}}">
+        <text class="grow">{{item.name}}</text>
+        <text class="badge">{{item.status}}</text>
+      </view>
+    </view>
+  </block>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

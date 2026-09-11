@@ -1,0 +1,49 @@
+page{height:100%;overflow:hidden;background:var(--canvas)}
+.request-screen{display:flex;flex-direction:column;box-sizing:border-box;overflow:hidden;background:var(--canvas);color:var(--ink)}
+.request-screen>connection-bar{flex-shrink:0}
+/* Only this native scroll-view moves. The footer owns space in the viewport. */
+.request-main{flex:1;height:0;min-height:0;width:100%}
+.request-content{padding:32rpx 32rpx 28rpx}
+.request-kicker{line-height:1}
+.request-kicker .badge{font-size:20rpx;padding:8rpx 14rpx;border-radius:8rpx;line-height:1.5}
+.request-title{font-size:52rpx;font-weight:650;letter-spacing:-1.5rpx;line-height:1.3;margin:34rpx 0 18rpx;overflow-wrap:anywhere}
+.request-summary{display:block;font-size:27rpx;line-height:1.7;color:var(--ink);white-space:pre-wrap;overflow-wrap:anywhere}
+.request-context{padding:26rpx;margin-top:38rpx;border:1rpx solid var(--line);border-radius:28rpx;background:var(--surface)}
+.context-row{display:flex;align-items:center;justify-content:space-between;gap:24rpx;padding:26rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.context-label{flex-shrink:0;color:var(--muted);font-size:24rpx;line-height:1.6}
+.context-value{min-width:0;font-size:27rpx;line-height:1.6;text-align:right;overflow-wrap:anywhere}
+.context-agent{display:flex;align-items:center;justify-content:flex-end;gap:12rpx}
+.context-agent .agent-logo{width:30rpx;height:30rpx}
+.context-session{padding:26rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.context-session-title{font-size:27rpx;line-height:1.6;overflow-wrap:anywhere;margin-top:4rpx}
+.expiry{font-size:21rpx;line-height:1.6;color:var(--quiet);padding-top:12rpx}
+.request-action{display:flex;flex-direction:column;gap:16rpx;padding:28rpx;margin-top:18rpx;border:1rpx solid var(--line);border-radius:28rpx;background:var(--surface)}
+.action-code{font-family:ui-monospace,SFMono-Regular,Consolas,"Microsoft YaHei",monospace;font-size:26rpx;overflow-wrap:anywhere;white-space:pre-wrap}
+.scope{font-size:24rpx;color:var(--muted);overflow-wrap:anywhere}
+.request-form{margin-top:18rpx}
+.question-field{padding:40rpx 26rpx;margin-bottom:18rpx;border:1rpx solid var(--line);border-radius:28rpx;background:var(--surface)}
+.question-field:last-child{margin-bottom:0}
+.form-label{font-size:25rpx;font-weight:500;color:var(--muted);line-height:1.6;margin-bottom:20rpx;overflow-wrap:anywhere}
+.required{font-weight:400}
+.answer-option{display:flex;align-items:center;gap:16rpx;padding:18rpx 0;font-size:28rpx;line-height:1.6}
+.answer-option text{min-width:0;overflow-wrap:anywhere}
+.answer-option radio,.answer-option checkbox{flex-shrink:0}
+.answer-textarea{height:240rpx;min-height:240rpx;width:100%;box-sizing:border-box;padding:22rpx 24rpx;border:1rpx solid var(--line);border-radius:22rpx;background:var(--raised);font-size:28rpx;line-height:1.7;color:var(--ink)}
+.request-footer{position:relative;z-index:2;flex-shrink:0;border-top:1rpx solid var(--line);background:var(--surface);padding:20rpx 32rpx calc(16rpx + env(safe-area-inset-bottom))}
+.request-footer button.submit-answer:not([size='mini']){width:100%;line-height:88rpx;font-size:28rpx;border-radius:22rpx;background:var(--ink);border-color:var(--ink);color:var(--accent-ink)}
+.footer-links{display:flex;align-items:center;justify-content:space-between;gap:16rpx;margin-top:12rpx;font-size:22rpx;line-height:36rpx}
+.footer-hint{color:var(--quiet);font-size:20rpx}
+.session-link{color:var(--muted)}
+.request-choices{display:flex;gap:16rpx;flex-wrap:wrap}
+.request-choices button.choice{flex:1;min-width:220rpx;width:auto;margin:0;line-height:88rpx;border-radius:22rpx;font-size:27rpx;padding:0 18rpx}
+.request-choices button.primary{background:var(--ink);border-color:var(--ink);color:var(--accent-ink)}
+.request-screen .notice,.request-screen .error{font-size:24rpx;line-height:1.6;padding:18rpx 22rpx;margin:18rpx 0;border-radius:18rpx}
+.request-footer .notice,.request-footer .error{margin:0 0 14rpx}
+.request-result{margin-top:18rpx;padding:28rpx;border:1rpx solid var(--line);border-radius:28rpx;background:var(--surface)}
+.request-result .body{font-size:27rpx}
+.request-result .tiny{font-size:21rpx;margin-top:16rpx}
+/* Do not hide context or shrink the form; scroll the focused field above the keyboard. */
+.keyboard-open .request-footer{padding:12rpx 32rpx}
+.keyboard-open .request-footer button.submit-answer:not([size='mini']){line-height:76rpx}
+.keyboard-open .footer-links{display:none}
+.large .request-summary,.large .context-value,.large .context-session-title,.large .form-label,.large .answer-option,.large .answer-textarea{font-size:32rpx}

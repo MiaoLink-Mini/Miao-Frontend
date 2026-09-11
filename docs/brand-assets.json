@@ -1,0 +1,29 @@
+{
+  "productName": "喵连",
+  "source": {
+    "file": "icon-original.png",
+    "sha256": "25f287ce746375670f1acd3b0d0238087000c5b92e31207e679177723b830898",
+    "width": 1254,
+    "height": 1254
+  },
+  "assets": [
+    {
+      "path": "miniprogram/assets/golink.png",
+      "sha256": "213b894db392b2796177871a07fc54c33c54600e20a2ce2c1cd685a5c92d13b6",
+      "width": 256,
+      "height": 256,
+      "bytes": 26105
+    },
+    {
+      "path": "miniprogram/assets/share-card.png",
+      "sha256": "c7bd8eff779e081b44cb730235bdf5a7807f02ae5220b648d5424afc79f21e6f",
+      "width": 1000,
+      "height": 800,
+      "bytes": 39294
+    }
+  ],
+  "processing": {
+    "icon": "Whole supplied image, LANCZOS resize, 128-color PNG; white background retained. No crop, redraw or tracing.",
+    "shareCard": "Static 1000x800 composition of the supplied artwork and product name; no user content."
+  }
+}

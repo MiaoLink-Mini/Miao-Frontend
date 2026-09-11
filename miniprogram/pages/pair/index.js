@@ -1,0 +1,94 @@
+const { errorText } = require('../../utils/error-display');
+const {
+  definePage,runtime
+}
+=require('../../utils/page');
+definePage({
+  data:{
+    code:'',ticket:null,seconds:0,busy:false,error:''
+  }
+  ,onShow(){
+    this.timer=setInterval(()=>{
+      if(this.data.ticket)this.setData({
+        seconds:Math.max(0,Math.ceil((this.data.ticket.expiresAt-runtime().now())/1000))
+      }
+      );
+    }
+    ,1000);
+  }
+  ,onHide(){
+    clearInterval(this.timer);
+  }
+  ,onUnload(){
+    clearInterval(this.timer);
+    this.alive=false;
+  }
+  ,onLoad(){
+    this.alive=true;this.setData({demo:!runtime().live});
+  }
+  ,input(e){
+    this.setData({
+      code:e.detail.value,error:''
+    }
+    );
+  }
+  ,scan(){
+    wx.scanCode({
+      onlyFromCamera:true,success:r=>{
+        this.setData({
+          code:r.result
+        }
+        );
+        this.preview();
+      }
+      ,fail:r=>{
+        this.setData({
+          error:errorText('SCAN_FAILED')
+        }
+        );
+      }
+    }
+    );
+  }
+  ,async preview(){
+    if(this.data.busy)return;
+    this.setData({
+      busy:true,error:''
+    }
+    );
+    try{
+      const ticket=await runtime().gateway.previewPair(this.data.code);
+      if(this.alive)this.setData({
+        ticket,seconds:Math.max(0,Math.ceil((ticket.expiresAt-runtime().now())/1000))
+      }
+      );
+    }
+    catch(e){
+      this.setData({
+        error:errorText(e)
+      }
+      );
+    }
+    finally{
+      this.setData({
+        busy:false
+      }
+      );
+    }
+  }
+  ,cancel(){
+    if(this.data.busy||this.data.unknown)return;
+    this.setData({
+      ticket:null,error:'',receipt:''
+    }
+    );
+  }
+  ,confirm(){
+    if(!this.data.ticket||!this.data.seconds)return;
+    this.action('confirmPair',[this.data.ticket.id],node=>wx.redirectTo({
+      url:'/pages/node/index?id='+node.id
+    }
+    ));
+  }
+}
+);

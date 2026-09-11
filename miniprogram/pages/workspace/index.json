@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "原生工作台",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

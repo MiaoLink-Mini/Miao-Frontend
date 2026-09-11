@@ -1,0 +1,79 @@
+.title{font-size:44rpx}
+.diff-file{padding:22rpx 18rpx;overflow:hidden}
+.diff-head{display:flex;align-items:center;gap:14rpx;padding:0 6rpx 14rpx}
+.diff-file-glyph{display:flex;align-items:center;justify-content:center;flex:none;width:56rpx;height:56rpx;border:1rpx solid var(--line);border-radius:16rpx;background:var(--raised)}
+.diff-file .mono{font-size:23rpx}
+.diff-toggle{display:flex;align-items:center;justify-content:center;flex:none;width:48rpx;height:48rpx}
+.diff-open{padding:14rpx 6rpx 2rpx}
+.menu-grid{margin-bottom:20rpx}
+.card>.list-row:first-child{padding-top:0}
+.card>.list-row:last-child{padding-bottom:0}
+
+/* 顶部会话上下文条：设备 · 项目 · Agent。 */
+.context-bar{display:flex;flex-wrap:wrap;gap:10rpx 22rpx;margin:0 0 26rpx;padding:16rpx 20rpx;border:1rpx solid var(--line-soft);border-radius:18rpx;background:var(--surface)}
+.context-item{display:flex;align-items:center;gap:8rpx;min-width:0;color:var(--quiet);font-size:21rpx}
+.context-item text{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* 执行计划：图标头部 + 状态化步骤清单。 */
+.plan-head{display:flex;align-items:center;gap:22rpx;margin-bottom:24rpx}
+.plan-steps{display:flex;flex-direction:column;border-top:1rpx solid var(--line-soft)}
+.plan-step{display:flex;align-items:center;gap:16rpx;padding:20rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.plan-step:last-child{border-bottom:0}
+.plan-step-icon{display:flex;align-items:center;justify-content:center;flex:none;width:44rpx;height:44rpx}
+.plan-step-label{flex:1;min-width:0;font-size:25rpx;color:var(--ink);line-height:1.5;overflow-wrap:anywhere}
+.plan-step-state{flex:none;padding:5rpx 14rpx;border-radius:12rpx;font-size:19rpx;color:var(--quiet);background:var(--raised)}
+.plan-step-state.completed{color:var(--positive);background:var(--add-bg)}
+.plan-step-state.running{color:var(--accent);background:var(--accent-soft)}
+.plan-step-state.pending{color:var(--quiet);background:var(--raised)}
+
+/* 用量：指标瓦片 + 补充信息卡。 */
+.usage-tiles{display:flex;gap:14rpx;margin:6rpx 0 0}
+.usage-cost{font-size:30rpx}
+.usage-extra{padding:22rpx 26rpx}
+.usage-row{padding:0 0 16rpx}
+.usage-footnote{display:block}
+
+/* 模型目录：图标头部 + 刷新动作。 */
+.model-head-main{display:flex;align-items:center;gap:18rpx;min-width:0}
+.model-glyph{display:flex;align-items:center;justify-content:center;flex:none;width:76rpx;height:76rpx;border:1rpx solid var(--line);border-radius:22rpx;background:var(--raised)}
+
+/* 待执行消息：图标 + 状态徽标。 */
+.queue-head{display:flex;align-items:center;gap:14rpx;margin-bottom:8rpx}
+.queue-glyph{display:flex;align-items:center;justify-content:center;flex:none;width:48rpx;height:48rpx}
+.queue-body{padding:6rpx 0 0}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.menu-glyph{display:flex;align-items:center;justify-content:center;flex:none}
+.page>.title{font-size:44rpx;margin-bottom:18rpx}
+.menu-grid .row{justify-content:flex-start}
+.menu-grid button{min-width:0}
+
+.secondary.section{white-space:normal;line-height:1.5}
+
+
+.card .row>.grow{min-width:0}
+
+.model-title{display:flex;align-items:center;gap:12rpx;min-width:0}.model-title text{min-width:0;overflow-wrap:anywhere}
+
+/* Model catalog: quiet header action + list rows replace stacked full-width buttons. */
+.model-head{display:flex;align-items:center;justify-content:space-between;margin:0 0 14rpx}
+.model-head .field-label{margin:0}
+.model-refresh{display:flex;align-items:center;gap:8rpx}
+.model-list{margin-top:4rpx}
+.model-row .model-name{font-weight:500;overflow-wrap:anywhere}
+.model-row.model-current .model-name{color:var(--accent);font-weight:600}
+.model-check{display:flex;align-items:center;justify-content:flex-end;flex:none;width:44rpx}
+
+/* 压缩上下文视图：图标头部 + 分步确认清单 + 主操作。 */
+.compact-head{display:flex;align-items:center;gap:22rpx}
+.compact-glyph{width:92rpx;height:92rpx;border:1rpx solid var(--line);border-radius:26rpx;background:var(--raised);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.compact-head-text{min-width:0}
+.compact-title{font-size:30rpx;font-weight:600;line-height:1.4;color:var(--ink)}
+.compact-sub{font-size:22rpx;color:var(--quiet);margin-top:4rpx}
+.compact-steps{display:flex;flex-direction:column;gap:22rpx;margin:28rpx 0;padding:26rpx;border:1rpx solid var(--line-soft);border-radius:22rpx;background:var(--raised)}
+.compact-step{display:flex;align-items:flex-start;gap:16rpx}
+.compact-step-glyph{display:flex;align-items:center;justify-content:center;flex:none;width:40rpx;height:40rpx;margin-top:2rpx}
+.compact-step-text{min-width:0}
+.compact-step-name{font-size:25rpx;font-weight:500;color:var(--ink);line-height:1.5}
+.compact-step-desc{display:block;font-size:21rpx;color:var(--quiet);line-height:1.6;margin-top:2rpx}
+.compact-action{margin:6rpx 0 0}

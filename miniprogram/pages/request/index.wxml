@@ -1,0 +1,49 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<import src="../../components/operation.wxml"/>
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="request-screen {{keyboardHeight ? 'keyboard-open' : ''}} {{preferences.largeText ? 'large' : ''}}" style="height:calc(100vh - {{keyboardHeight}}px)">
+  <connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+  <block wx:if="{{request}}">
+    <scroll-view class="request-main" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" scroll-into-view="{{scrollTarget}}">
+      <view class="request-content">
+      <view class="request-header">
+        <view class="request-kicker"><text class="badge {{request.kind === 'approval' ? 'waiting_approval' : 'waiting_input'}}">{{request.kind === 'approval' ? '权限审批' : 'Agent 提问'}} · {{request.stateLabel}}</text></view>
+        <view class="request-title">{{request.title}}</view>
+        <text class="request-summary">{{request.summary}}</text>
+        <view class="request-context">
+          <view class="context-row"><text class="context-label">设备</text><text class="context-value">{{session.node.name}}</text></view>
+          <view class="context-row"><text class="context-label">项目</text><text class="context-value">{{session.project.name}}</text></view>
+          <view class="context-row"><text class="context-label">Agent</text><view class="context-value context-agent"><image class="agent-logo" src="{{session.agent.icon}}" mode="aspectFit"/><text>{{session.agent.name}}</text></view></view>
+          <view class="context-session"><text class="context-label">会话</text><view class="context-session-title">{{session.title}}</view></view>
+          <view class="expiry">{{expires ? '有效期剩余约 ' + expires + ' 分钟' : '有效期已结束'}}</view>
+        </view>
+        <view wx:if="{{request.action || request.scope}}" class="request-action"><text wx:if="{{request.action}}" class="action-code" selectable>{{request.action}}</text><text wx:if="{{request.scope}}" class="scope">授权范围：{{request.scope}}</text></view>
+      </view>
+      <view wx:if="{{reason}}" class="notice warning request-reason">{{reason}}</view>
+      <view wx:if="{{answerLabel}}" class="request-result"><view class="form-label">处理结果</view><text class="body" selectable>{{answerLabel}}</text><view class="tiny">{{demo ? '已收到演示回执；不代表真实 Agent 已执行。' : '回执已回传主机。'}}</view></view>
+      <view wx:if="{{request.kind === 'question' && request.state === 'pending'}}" class="request-form">
+        <view wx:for="{{request.questions}}" wx:key="id" wx:for-item="question" id="question-{{question.id}}" class="question-field">
+          <view class="form-label">{{question.label}}<text class="required">{{question.required ? ' *' : '（选填）'}}</text></view>
+          <radio-group wx:if="{{question.type === 'single'}}" bindchange="answer" data-id="{{question.id}}">
+            <label wx:for="{{question.options}}" wx:key="id" wx:for-item="option" class="answer-option"><radio value="{{option.id}}" color="{{accent}}" checked="{{answers[question.id] === option.id}}" disabled="{{!!reason || busy || unknown}}"/><text>{{option.label}}</text></label>
+          </radio-group>
+          <checkbox-group wx:elif="{{question.type === 'multiple'}}" bindchange="answer" data-id="{{question.id}}">
+            <label wx:for="{{question.options}}" wx:key="id" wx:for-item="option" class="answer-option"><checkbox value="{{option.id}}" color="{{accent}}" disabled="{{!!reason || busy || unknown}}"/><text>{{option.label}}</text></label>
+          </checkbox-group>
+          <textarea wx:elif="{{question.type === 'text'}}" class="answer-textarea" value="{{answers[question.id] || ''}}" bindinput="answer" bindfocus="focusAnswer" data-id="{{question.id}}" maxlength="4000" adjust-position="{{false}}" bindkeyboardheightchange="keyboard" disabled="{{!!reason || busy || unknown}}" placeholder="输入你的回答"/>
+          <view wx:else class="notice warning">此表单类型尚未适配，请在主机回答。</view>
+        </view>
+      </view>
+      </view>
+    </scroll-view>
+    <view class="request-footer">
+      <template is="operation" data="{{busy,receipt,error,unknown}}"/>
+      <button wx:if="{{request.kind === 'question' && request.state === 'pending'}}" class="primary submit-answer inline-action" bindtap="submit" disabled="{{!!reason || busy || unknown}}" loading="{{busy}}">提交回答<ui-icon name="arrow" size="{{28}}" tone="accentInk" /></button>
+      <view wx:if="{{request.kind === 'approval' && request.state === 'pending'}}" class="request-choices"><button wx:for="{{request.choices}}" wx:key="id" class="{{index === 0 ? 'primary' : 'secondary'}} choice" size="mini" bindtap="approve" data-choice="{{item.id}}" disabled="{{!!reason || busy || unknown}}" loading="{{busy}}">{{item.label}}</button></view>
+      <view class="footer-links"><text class="footer-hint">仅处理当前请求</text><view class="session-link inline-action" bindtap="openSession"><text>查看所属会话</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view>
+    </view>
+  </block>
+  <view wx:else class="empty"><view class="empty-title">请求不可访问</view><text>请求已移除，或你的访问权限已失效。</text></view>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

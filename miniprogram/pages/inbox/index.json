@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "待处理",
+  "usingComponents": {
+    "connection-bar": "/components/connection-bar/index",
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

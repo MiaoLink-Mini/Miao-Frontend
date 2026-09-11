@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "偏好与隐私",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

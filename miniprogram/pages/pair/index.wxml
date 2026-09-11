@@ -1,0 +1,41 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<import src="../../components/operation.wxml"/>
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page">
+  <view class="eyebrow">设备配对</view>
+  <view class="title">{{ticket ? '确认这台设备' : '添加设备'}}</view>
+  <view class="subtitle">{{ticket ? '请核对设备信息，再确认远程访问。' : '在主机端获取二维码或一次性配对码。'}}</view>
+  <block wx:if="{{!ticket}}">
+    <view class="pair-graphic">
+      <view class="pair-device">
+        <ui-icon name="monitor" size="{{72}}" tone="accent" />
+      </view>
+      <view><ui-icon name="link" size="{{32}}" tone="accent" /></view>
+      <view class="pair-phone"><ui-icon name="phone" size="{{58}}" tone="accent" /></view>
+    </view>
+    <button class="primary" bindtap="scan">扫描配对二维码</button>
+    <view class="field-label">或输入配对码</view>
+    <input value="{{code}}" bindinput="input" placeholder="请输入完整配对码" maxlength="200"/>
+    <button class="secondary section" bindtap="preview" loading="{{busy}}" disabled="{{busy || !code}}">查看设备信息</button>
+    <view class="notice">{{demo ? '演示配对码：GOLINK-DEMO' : '配对码由主机端 Daemon 启动时输出，5 分钟内有效'}}</view>
+  </block>
+  <block wx:else>
+    <view class="card section">
+      <view class="card-title">{{ticket.name}}</view>
+      <view class="list-row">{{ticket.platform}}</view>
+      <view wx:if="{{ticket.version}}" class="list-row muted">{{ticket.version}}</view>
+      <view wx:if="{{ticket.keyFingerprint}}" class="list-row muted">公钥指纹
+        <text selectable="{{true}}">{{ticket.keyFingerprint}}</text>
+      </view>
+      <view class="muted">{{seconds ? seconds + ' 秒后过期' : '配对已过期，请重新获取'}}</view>
+    </view>
+    <view class="notice warning">确认后，你可以从本账号远程查看和控制这台设备上的已授权会话。</view>
+    <view class="actions">
+      <button class="secondary" bindtap="cancel" disabled="{{busy || unknown}}">返回</button>
+      <button class="primary" bindtap="confirm" disabled="{{!seconds || busy || unknown}}" loading="{{busy}}">确认绑定</button>
+    </view>
+  </block>
+  <template is="operation" data="{{busy,receipt,error,unknown}}"/>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

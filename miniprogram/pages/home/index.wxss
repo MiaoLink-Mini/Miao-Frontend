@@ -1,0 +1,29 @@
+.screen-head{align-items:center}
+.metric-tile{line-height:1.3;font-weight:400}
+.needs-attention{border-color:var(--accent);background:var(--accent-soft)}
+.needs-attention .metric-value,.needs-attention .metric-label{color:var(--accent)}
+.attention-list{padding:0 22rpx;background:var(--accent-soft);border:1rpx solid var(--line);border-radius:26rpx}
+.attention-row{line-height:1.5;white-space:normal;padding:22rpx 0;border:0;background:transparent;border-radius:0;text-align:left}
+.attention-row+.attention-row{border-top:1rpx solid var(--line)}
+.attention-row .card-title{font-size:26rpx}
+.attention-row .tiny{display:block;margin-top:6rpx}
+.attention-symbol{display:flex;align-items:center;justify-content:center;width:44rpx;height:44rpx;border-radius:14rpx;background:var(--surface);font:26rpx ui-monospace,monospace;color:var(--accent);flex-shrink:0}
+.project-symbol{font-size:34rpx;color:var(--accent);width:44rpx;text-align:center}
+.compact-empty button{margin:24rpx auto 0}
+.card-title{font-size:27rpx}
+
+.attention-row .grow{text-align:left}
+.attention-row .card-title{font-weight:500}
+.attention-row .tiny{font-weight:400}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.surface-list .row-button{padding:26rpx 0}
+.surface-list .card-title{font-size:28rpx;line-height:1.45}
+.surface-list .resource-symbol{width:68rpx;height:68rpx}
+.surface-list .tiny{font-size:21rpx;color:var(--quiet)}
+.surface-list .project-symbol{width:48rpx;height:48rpx}
+.surface-list .state-label{font-size:21rpx;align-self:center}
+.attention-row .row{width:100%}
+.attention-row .chevron{margin-left:auto}
+.metric-strip{margin-top:20rpx}
+.metric-tile .inline-action{min-height:32rpx}

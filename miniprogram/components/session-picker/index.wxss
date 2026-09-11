@@ -1,0 +1,11 @@
+.context-list{height:52vh;margin-top:20rpx}
+.context-option{width:100%;text-align:left;white-space:normal;line-height:1.5;padding:24rpx 0;border:0;border-bottom:1rpx solid var(--line-soft);border-radius:0;background:transparent}
+.context-option .tiny{display:block;margin-top:8rpx}
+.context-option .card-title{font-size:27rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.context-option{min-width:0}
+.context-option>.row{width:100%;min-width:0}
+.context-option .chevron{margin-left:auto}
+.context-option .card-title{font-size:26rpx}
+.context-option .tiny{overflow-wrap:anywhere}

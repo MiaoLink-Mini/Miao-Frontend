@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "activity-mark": "/components/activity-mark/index",
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

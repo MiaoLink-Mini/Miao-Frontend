@@ -1,0 +1,11 @@
+.title{font-size:44rpx;overflow-wrap:anywhere}
+.danger-link{color:var(--negative);margin-top:30rpx}
+.small{width:60rpx;height:60rpx;font-size:30rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.agent-row .grow{min-width:0}
+.surface-list .row-button .metadata-value{font-size:24rpx}
+.screen-head .resource-symbol{width:84rpx;height:84rpx}
+.screen-head .title{font-size:42rpx}
+.state-label{white-space:nowrap}
+.surface-list .row-button .agent-logo{margin-right:2rpx}

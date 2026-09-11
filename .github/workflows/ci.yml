@@ -1,0 +1,71 @@
+name: Frontend CI
+
+on:
+  push:
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      backend_ref:
+        description: 'Explicit GoLink-Backend commit, tag or branch'
+        type: string
+        required: true
+        default: '32b495120644f8bfb85327a4e96e45d6b51ccc33'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  checks:
+    name: Frontend / Node ${{ matrix.node }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        node: ['22', '24']
+    defaults:
+      run:
+        shell: bash
+        working-directory: WeAgent-Frontend
+    steps:
+      - name: Check out frontend under its source-compatible directory
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          path: WeAgent-Frontend
+          persist-credentials: false
+
+      - name: Check out the canonical Gateway contract
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          repository: GoLink-Mini/GoLink-Backend
+          ref: ${{ inputs.backend_ref || '32b495120644f8bfb85327a4e96e45d6b51ccc33' }}
+          path: WeAgent-Backend
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          # No npm cache: the frontend has no dependency lockfile.
+
+      - name: Record the exact source revisions
+        run: |
+          {
+            printf '### Frontend / Node %s\n\n' "$(node --version)"
+            printf -- '- Frontend: `%s`\n' "$(git rev-parse HEAD)"
+            printf -- '- Backend: `%s`\n' "$(git -C ../WeAgent-Backend rev-parse HEAD)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Check committed protocol output without regenerating it
+        run: npm run check:contract
+
+      - name: Check project structure, syntax and resource budgets
+        run: npm run check
+
+      - name: Run the complete frontend unit suite
+        run: npm test

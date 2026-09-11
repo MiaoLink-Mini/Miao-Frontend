@@ -1,0 +1,9 @@
+
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.file-heading{display:flex;align-items:center;gap:20rpx;margin:8rpx 0 30rpx}
+.file-heading .card-title{font-size:25rpx;line-height:1.6;margin-top:6rpx}
+.file-heading .screen-kicker{margin:0}
+.file-heading .resource-symbol{width:72rpx;height:72rpx}
+.file-heading .grow{min-width:0}
+.page{padding-left:24rpx;padding-right:24rpx}

@@ -1,0 +1,9 @@
+<view class="swipe-shell">
+<button wx:if="{{swipeable && revealed}}" class="swipe-rename" catchtap="rename" aria-label="重命名会话">重命名</button>
+<button wx:if="{{swipeable && revealed}}" class="swipe-delete" catchtap="remove" aria-label="删除会话"><ui-icon name="trash" size="{{36}}" tone="accentInk" /> 删除</button>
+<view class="session-card {{swipeable && revealed ? 'swipe-revealed' : ''}}" bindtouchstart="touchStart" bindtouchend="touchEnd" bindtouchcancel="touchCancel" bindtap="open" role="button" aria-label="{{session.title}}，{{session.stateLabel}}">
+  <view class="row gap"><image wx:if="{{session.agent.icon}}" class="agent-logo" src="{{session.agent.icon}}" mode="aspectFit"/><view class="grow"><text class="agent-name">{{session.agent.name}}</text><text class="project-name"> / {{session.project.name}}</text></view><activity-mark wx:if="{{session.state === 'running'}}" active size="small"/><text wx:else class="status-dot {{session.state}}"></text></view>
+  <view class="session-title">{{session.title}}</view>
+  <view class="row footer"><view class="row gap"><view wx:if="{{session.pinned}}" class="pin"><ui-icon name="pin" size="{{32}}" tone="accent" /></view><text class="state {{session.state}}">{{session.stateLabel}}</text><text wx:if="{{session.pending}}" class="attention">{{session.pending}} 项待处理</text></view><text class="tiny">{{session.timeLabel}}</text></view>
+</view>
+</view>

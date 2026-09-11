@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "设备详情",
+  "usingComponents": {
+    "connection-bar": "/components/connection-bar/index",
+    "ui-icon": "/components/ui-icon/index",
+    "session-card": "/components/session-card/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

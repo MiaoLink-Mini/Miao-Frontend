@@ -1,0 +1,13 @@
+
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.title{font-size:44rpx;line-height:1.35;letter-spacing:-1rpx}
+.card{padding:24rpx;border-radius:24rpx}
+.field-label:first-child{margin-top:0}
+.field-label{font-size:22rpx;margin-bottom:10rpx;color:var(--quiet)}
+.card .body{font-size:25rpx;line-height:1.7}
+.record-row{padding:22rpx 0;border-bottom:1rpx solid var(--line-soft)}
+.record-row:last-child{border:0}
+.record-row .tiny{display:block;margin-bottom:6rpx}
+.record-row .body{font-size:24rpx}
+.page>.tiny:last-child{display:block;overflow-wrap:anywhere;margin-top:22rpx}

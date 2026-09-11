@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "功能与兼容性",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

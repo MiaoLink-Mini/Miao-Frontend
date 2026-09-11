@@ -1,0 +1,8 @@
+.bar{display:flex;align-items:center;gap:12rpx;background:var(--accent-soft);color:var(--warning);padding:8rpx 28rpx;font-size:21rpx;border-bottom:1rpx solid var(--line)}
+.bar-action{width:auto;line-height:46rpx;border:0;color:var(--warning);background:transparent;font-size:21rpx;padding:0 6rpx;margin:0}
+.connection-dot{width:8rpx;height:8rpx;background:var(--warning);border-radius:50%}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.bar{min-height:70rpx;padding-top:8rpx;padding-bottom:8rpx}
+.bar .grow{min-width:0;overflow-wrap:anywhere}
+.bar-action{flex:none;min-height:64rpx;min-width:80rpx;padding:0 10rpx;display:flex;align-items:center;justify-content:center}

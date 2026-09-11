@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "activity-mark": "/components/activity-mark/index"
+  }
+}

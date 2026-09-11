@@ -1,0 +1,2 @@
+:host{display:inline-flex;flex:none;align-items:center;justify-content:center;vertical-align:middle;line-height:0}
+.ui-icon-image{display:block;flex:none;margin:0;padding:0;border:0}

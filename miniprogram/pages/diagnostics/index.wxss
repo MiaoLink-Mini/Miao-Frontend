@@ -1,0 +1,14 @@
+
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.title{font-size:44rpx;letter-spacing:-1rpx}
+.card{border-radius:24rpx;padding:4rpx 26rpx}
+.card>.tiny{display:block;padding:20rpx 0}
+.list-row>.mono{font-size:22rpx;color:var(--muted)}
+.list-row>.row{align-items:flex-start;gap:20rpx}
+.list-row>.row>text:first-child{flex:1;min-width:0}
+.list-row>.row .tiny{flex:none;font-variant-numeric:tabular-nums}
+.card>.actions{margin:22rpx 0}
+.card>.muted{display:block;padding:26rpx 0}
+.section-title{font-size:25rpx}
+.row .muted{min-width:0;text-align:right;font-size:22rpx}

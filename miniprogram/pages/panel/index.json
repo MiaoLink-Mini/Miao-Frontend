@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "会话与能力详情",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "code-diff": "/components/code-diff/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

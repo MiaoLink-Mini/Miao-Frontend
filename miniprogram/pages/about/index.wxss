@@ -1,0 +1,5 @@
+.about-hero{display:flex;flex-direction:column;align-items:center;text-align:center;padding:72rpx 32rpx 40rpx}
+.about-logo{width:152rpx;height:152rpx;border-radius:32rpx;border:1rpx solid var(--line);background:var(--raised);box-shadow:var(--shadow)}
+.about-name{font-size:42rpx;font-weight:650;letter-spacing:-1rpx;margin-top:28rpx}
+.about-intro{color:var(--muted);font-size:25rpx;line-height:1.8;margin-top:20rpx;max-width:580rpx}
+.dev-avatar{width:64rpx;height:64rpx;border-radius:50%;border:1rpx solid var(--line);background:var(--raised);flex:none}

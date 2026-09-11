@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "功能说明",
+  "usingComponents": {
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

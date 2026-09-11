@@ -1,0 +1,1 @@
+<template name="operation"><view wx:if="{{busy}}" class="operation-note"><view class="operation-dot"></view><text>{{receipt || '提交中'}}</text></view><view wx:if="{{error}}" class="error">{{error}}</view><button wx:if="{{unknown}}" class="secondary" bindtap="reconcile">查询结果（不重发）</button></template>

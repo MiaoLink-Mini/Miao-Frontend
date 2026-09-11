@@ -1,0 +1,59 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page">
+  <view class="eyebrow">DIAGNOSTICS{{demo ? ' / DEMO' : ''}}</view>
+  <view class="title">连接与操作记录</view>
+  <view class="card section">
+    <view class="row list-row">
+      <text>手机 → 网关</text>
+      <text class="badge">{{connectionLabel}}</text>
+    </view>
+    <view class="row list-row">
+      <text>适配器</text>
+      <text class="muted">{{demo ? 'Fake Gateway' : 'Live Gateway'}}</text>
+    </view>
+    <view class="row list-row">
+      <text>内部视图事件</text>
+      <text class="muted">{{demo ? 'demo-view/1' : 'weagent-view/1'}}</text>
+    </view>
+    <text class="tiny">此页面仅显示脱敏状态，不会自动上传日志。</text>
+  </view>
+  <view class="section-title section">{{demo ? '演示场景' : '连接恢复'}}</view>
+  <view wx:if="{{connectionError}}" class="notice warning">{{connectionError}}</view>
+  <view class="card">
+    <view class="actions">
+      <button wx:if="{{demo}}" class="secondary small" bindtap="disconnect" disabled="{{connection !== 'online'}}">模拟手机断线</button>
+      <button class="primary small" bindtap="recover">恢复并补齐历史</button>
+    </view>
+    <view wx:if="{{demo}}" wx:for="{{nodes}}" wx:key="id" class="row list-row">
+      <view>
+        <view>{{item.name}}</view>
+        <text class="tiny">网关 → 主机 · {{item.online ? '在线' : '离线'}}</text>
+      </view>
+      <switch checked="{{item.online}}" disabled="{{item.revoked}}" data-id="{{item.id}}" bindchange="toggleNode" color="#70706a"/>
+    </view>
+    <button wx:if="{{demo}}" class="secondary small section" bindtap="unknown" disabled="{{!sessions.length}}">加入未知事件提示</button>
+    <button wx:if="{{demo}}" class="secondary small section" bindtap="empty">体验无设备空状态</button>
+  </view>
+  <view class="section-title section">历史同步</view>
+  <view class="card">
+    <view wx:for="{{cursors}}" wx:key="id" class="list-row">
+      <view class="mono">{{item.id}}</view>
+      <text class="tiny">连续事件位置 {{item.cursor}} · {{item.gap ? '存在缺口，待补齐' : '已连续应用'}}</text>
+    </view>
+    <text wx:if="{{!cursors.length}}" class="muted">尚未加载会话正文</text>
+  </view>
+  <view class="section-title section" id="audit">本次操作记录</view>
+  <view class="card">
+    <view wx:for="{{audit}}" wx:key="id" class="list-row">
+      <view class="row">
+        <text>{{item.title}}</text>
+        <text class="tiny">{{item.time}}</text>
+      </view>
+      <text class="muted">{{item.state}}</text>
+    </view>
+    <text wx:if="{{!audit.length}}" class="muted">还没有操作记录</text>
+  </view>
+</view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

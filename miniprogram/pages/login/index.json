@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "喵连",
+  "usingComponents": {
+    "ui-icon": "/components/ui-icon/index",
+    "activity-mark": "/components/activity-mark/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

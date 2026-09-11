@@ -1,0 +1,16 @@
+
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.title{font-size:46rpx}
+.section-title{font-size:25rpx;color:var(--muted)}
+.card{padding:8rpx 26rpx;border-radius:24rpx;border-color:var(--line-soft)}
+.card.section.row{min-height:112rpx;padding:24rpx 26rpx;gap:16rpx}
+.card.section.row>view:first-child{min-width:0;flex:1}
+.card .list-row{padding:24rpx 0}
+.card .list-row>view:first-child{font-size:26rpx}
+.card>.body{display:block;padding-top:24rpx}
+.card>.section:last-child{margin:22rpx 0 24rpx}
+.card>.card-title{padding-top:24rpx}
+.card>.body.muted{padding-top:6rpx}
+.card .tiny{line-height:1.6}
+.card switch{flex:none}

@@ -1,0 +1,13 @@
+.pair-graphic{display:flex;align-items:center;justify-content:center;gap:36rpx;padding:64rpx 0;color:var(--muted);font-size:48rpx}
+.pair-device{background:var(--code);border:1rpx solid var(--line);width:164rpx;height:128rpx;border-radius:24rpx;display:flex;align-items:center;justify-content:center}
+.pair-device .ui-icon{width:84rpx;height:84rpx}
+.pair-phone{background:var(--raised);border:1rpx solid var(--quiet);color:var(--ink);width:94rpx;height:144rpx;line-height:144rpx;text-align:center;border-radius:24rpx;font-size:40rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.pair-graphic{gap:28rpx;margin:44rpx 0;height:150rpx}
+.pair-device{width:136rpx;height:116rpx;border-radius:26rpx;background:var(--raised);border:1rpx solid var(--line)}
+.pair-phone{width:88rpx;height:116rpx;display:flex;align-items:center;justify-content:center;border-radius:24rpx;background:var(--raised);border:1rpx solid var(--line)}
+.list-row text{display:block;overflow-wrap:anywhere;word-break:break-all;font:22rpx/1.7 ui-monospace,monospace;margin-top:10rpx}
+.title{font-size:46rpx}
+.subtitle{font-size:24rpx}
+.notice{font-size:22rpx}

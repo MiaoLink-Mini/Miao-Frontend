@@ -1,0 +1,12 @@
+.device-tile{padding:26rpx}
+.device-footer{border-top:1rpx solid var(--line);margin-top:24rpx;padding-top:20rpx}
+.small-button{font-size:25rpx;padding:14rpx 24rpx}
+.segmented{margin-bottom:28rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.device-tile{margin-top:18rpx;padding:24rpx}
+.device-tile .inline-status{flex:none;font-size:21rpx}
+.device-footer{min-height:60rpx;gap:16rpx}
+.device-footer>.tiny:first-child{min-width:0;overflow-wrap:anywhere}
+.device-footer>.inline-action{flex:none}
+.device-tile:active{background:var(--raised)}

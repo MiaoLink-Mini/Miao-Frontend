@@ -1,0 +1,12 @@
+.title{font-size:46rpx}
+.agent-logo-large{width:90rpx;height:90rpx}
+.capability-chips{display:flex;flex-wrap:wrap;gap:12rpx}
+.cap-chip{border:1rpx solid var(--line);background:var(--surface);border-radius:12rpx;padding:12rpx 18rpx;font-size:24rpx}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.agent-logo-large{width:72rpx;height:72rpx}
+.capability-chips{gap:10rpx}
+.cap-chip{border-radius:16rpx;font-size:22rpx;padding:10rpx 15rpx}
+.surface-list .row-button>text:first-child{flex:none;color:var(--muted);font-size:24rpx}
+.screen-head .title{font-size:42rpx}
+.metadata-value{gap:10rpx}

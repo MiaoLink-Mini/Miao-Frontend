@@ -1,0 +1,56 @@
+.workspace .title{font-size:42rpx}
+.workspace .workspace-path{display:flex;flex-wrap:wrap;gap:10rpx;margin-bottom:20rpx}
+.workspace .workspace-path button{margin:0;padding:8rpx 12rpx;font-size:23rpx}
+.workspace .field{margin:18rpx 0}
+.workspace textarea,.workspace input,.workspace .input{box-sizing:border-box;width:100%;padding:20rpx;background:var(--code);color:var(--ink);min-height:72rpx;border-radius:14rpx;margin:10rpx 0}
+.workspace .file-text{display:block;white-space:pre-wrap;overflow-wrap:anywhere;font-family:monospace;font-size:24rpx;max-height:65vh;overflow:auto;line-height:1.65}
+.workspace .artifact-image{display:block;max-width:100%;width:400rpx;margin:16rpx 0;border-radius:14rpx}
+.workspace text{overflow-wrap:anywhere}
+.workspace .body,.workspace .tiny{display:block;white-space:pre-wrap}
+.workspace .body{font-size:25rpx;line-height:1.65;margin:14rpx 0}
+.entry-actions{display:flex;flex-wrap:wrap;gap:12rpx}
+.entry-actions button{margin:12rpx 0 0;font-size:24rpx}
+.workspace-entry{padding:26rpx;margin:20rpx 0}
+.workspace-result{margin-bottom:20rpx}
+.control-panel{border-top:1rpx solid var(--line);margin-top:16rpx}
+.surface-list>.control-panel{border-top:0;margin-top:0}
+.workspace .global-operation{margin-bottom:20rpx}
+.catalog-pagination{display:flex;gap:20rpx;margin:28rpx 0}
+.catalog-pagination .secondary{flex:1;min-width:0;margin:0}
+.control-panel .row-button{padding:22rpx 0}
+.surface-list>.control-panel>.row-button{padding:22rpx 26rpx}
+.control-body{padding:4rpx 4rpx 22rpx}
+.surface-list .control-body{padding:0 26rpx 24rpx}
+.workspace-entry .card-title{margin:0}
+.upload-row{padding-top:24rpx;margin-top:24rpx;border-top:1rpx solid var(--line)}
+.organization-fields>.field{padding:0 26rpx}
+.organization-fields .row-button{gap:18rpx}
+.workspace>.primary{margin:22rpx 0}
+.selection-bar{border-color:var(--accent);margin-top:24rpx}
+.selection-bar .tiny{margin-top:10rpx}
+.workspace .row{gap:12rpx}
+.workspace .row>text{min-width:0}
+.workspace .row switch{flex-shrink:0}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.workspace .title{font-size:40rpx}
+.workspace .screen-head{align-items:center}
+.workspace-path{gap:8rpx;flex-wrap:wrap}
+.workspace-path button[size='mini']{min-height:68rpx;padding:0 16rpx;font-size:22rpx}
+.workspace-entry .card-title{font-size:26rpx}
+.workspace-entry .row>.tiny{flex:none;font-size:20rpx;max-width:160rpx;overflow-wrap:anywhere}
+.entry-actions{flex-wrap:wrap}
+.entry-actions button{white-space:normal;line-height:1.5;min-height:76rpx;padding:16rpx 20rpx}
+.workspace .file-text{font-size:24rpx;line-height:1.7;tab-size:2}
+.workspace .artifact-image{max-width:100%;border-radius:18rpx}
+.organization-fields .row-button>text:first-child{flex:1}
+.organization-fields .field{padding:24rpx 0}
+.selection-bar{border-color:var(--accent);background:var(--accent-soft)}
+.selection-bar button{margin-top:20rpx}
+
+
+/* Thinking levels: one-tap option list instead of per-card collapsible forms. */
+.thinking-list{margin-top:16rpx}
+.thinking-row .thinking-name{font-weight:500;text-transform:capitalize}
+.thinking-row.thinking-current .thinking-name{color:var(--accent);font-weight:600}
+.thinking-check{display:flex;align-items:center;justify-content:flex-end;flex:none;width:44rpx}

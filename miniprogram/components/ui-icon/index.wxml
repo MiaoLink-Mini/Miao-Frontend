@@ -1,0 +1,1 @@
+<image wx:if="{{src}}" class="ui-icon-image" src="{{src}}" mode="aspectFit" style="width:{{edge}}rpx;height:{{edge}}rpx" aria-hidden="true" show-menu-by-longpress="{{false}}"/>

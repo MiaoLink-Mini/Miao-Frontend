@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "activity-mark": "/components/activity-mark/index",
+    "ui-icon": "/components/ui-icon/index",
+    "event-card": "/components/event-card/index",
+    "code-diff": "/components/code-diff/index",
+    "theme-switcher": "/components/theme-switcher/index"
+  }
+}

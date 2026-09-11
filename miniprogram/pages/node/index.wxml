@@ -1,0 +1,21 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<import src="../../components/operation.wxml"/>
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+<view class="page"><block wx:if="{{node}}">
+ <view class="screen-head"><view class="grow"><view class="screen-kicker">设备</view><view class="title">{{node.name}}</view></view><view class="resource-symbol"><ui-icon name="monitor" size="{{32}}" tone="accent" /></view></view>
+ <view class="row"><text class="badge {{node.online ? 'online' : 'offline'}}">{{node.revoked ? '已撤销' : node.online ? '设备在线' : '设备离线'}}</text><text class="tiny">{{node.platform}} · {{node.version}}</text></view>
+ <view wx:if="{{!node.online}}" class="notice warning">{{node.revoked ? '重新接入需要主机上的新配对码' : '当前显示最后已知状态，设备上线后可操作'}}</view>
+ <block wx:if="{{!node.revoked}}">
+  <button class="primary section" bindtap="open" data-url="{{newUrl}}" disabled="{{!node.online}}">在此设备新建会话</button>
+  <view class="subhead"><text>授权项目</text><text class="tiny">{{projects.length}}</text></view><view class="surface-list"><view wx:for="{{projects}}" wx:key="id" class="row-button" bindtap="open" data-url="/pages/project/index?id={{item.id}}"><view class="resource-symbol small"><ui-icon name="folder" size="{{32}}" tone="accent" /></view><view class="grow"><view>{{item.name}}</view><text class="tiny">{{item.branch || '分支未上报'}}</text></view><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view><view wx:if="{{!projects.length}}" class="compact-empty">在主机登记项目后会显示在这里</view></view>
+  <view class="subhead"><text>Agent</text><text class="tiny">{{agents.length}}</text></view><view class="surface-list"><view wx:for="{{agents}}" wx:key="id" class="row-button" bindtap="open" data-url="/pages/agent/index?id={{item.id}}"><image class="agent-logo" src="{{item.icon}}" mode="aspectFit" aria-label="{{item.name}}"/><text class="grow">{{item.name}}</text><text class="badge {{item.stateClass}}">{{demo ? '演示 ' : ''}}{{item.stateLabel}}</text><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view><view wx:if="{{!agents.length}}" class="compact-empty">尚未登记 Agent</view></view>
+  <view class="subhead"><text>关联会话</text><view class="link inline-action" bindtap="allSessions"><text>全部</text><ui-icon name="chevron-right" size="{{28}}" tone="accent" /></view></view><session-card wx:for="{{sessions}}" wx:key="id" session="{{item}}"/><view wx:if="{{!sessions.length}}" class="compact-empty">还没有会话</view>
+ </block>
+ <button wx:else class="primary section" bindtap="open" data-url="/pages/pair/index">重新添加设备</button>
+ <view class="subhead"><text>连接与访问</text></view><view class="surface-list"><view class="row-button"><text>最后更新</text><text class="metadata-value">{{node.lastSeenLabel}}</text></view><view class="row-button" bindtap="open" data-url="/pages/diagnostics/index"><text>连接诊断</text><view class="chevron"><ui-icon name="chevron-right" size="{{32}}" tone="quiet" /></view></view></view>
+ <template is="operation" data="{{busy,receipt,error,unknown}}"/>
+ <button wx:if="{{!node.revoked}}" class="quiet-button danger-link" bindtap="revoke" disabled="{{busy || unknown || connection !== 'online'}}">撤销远程访问</button>
+</block><view wx:else class="compact-empty">{{loading ? '正在加载设备' : '设备不存在或无权访问'}}</view></view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

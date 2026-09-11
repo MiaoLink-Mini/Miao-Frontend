@@ -1,0 +1,5 @@
+<page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
+<view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}}" style="{{themeStyle}}">
+<view class="page"><block wx:if="{{file}}"><view class="file-heading"><view class="resource-symbol"><ui-icon name="diff" size="{{40}}" tone="accent" /></view><view class="grow"><view class="screen-kicker">改动快照</view><view class="card-title mono">{{file.name}}</view></view></view><code-diff patch="{{text}}" truncated="{{file.truncated}}"/></block><view wx:elif="{{!loading}}" class="empty"><view class="empty-title">文件不可访问</view></view><view wx:if="{{loading}}" class="notice">加载中</view><view wx:if="{{error}}" class="error">{{error}}</view></view>
+<theme-switcher open="{{themeSheet}}" selected="{{themeId}}" motion="{{motionMode}}" bind:close="closeThemes" bind:change="themeChange" bind:motion="motionChange"/>
+</view>

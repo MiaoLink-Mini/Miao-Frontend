@@ -1,0 +1,11 @@
+.title{font-size:44rpx;overflow-wrap:anywhere}
+.resource-symbol{width:88rpx;height:88rpx;font-size:44rpx}
+.section button{margin-top:0}
+.body{line-height:1.6}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.screen-head .title{font-size:44rpx}
+.actions button{min-height:88rpx;line-height:1.45;padding:20rpx 10rpx;font-size:25rpx}
+.metadata-value{font-size:23rpx}
+.surface-list .inline-status{flex:none;font-size:21rpx;padding:0;max-width:150rpx}
+.subhead{font-weight:600}

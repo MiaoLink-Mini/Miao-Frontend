@@ -1,0 +1,75 @@
+.theme-overlay{position:fixed;inset:0;z-index:1200}
+.theme-backdrop{position:absolute;inset:0;background:#00000078;animation:fade-in .2s ease}
+.theme-sheet{position:absolute;bottom:0;left:0;right:0;border:1rpx solid var(--line);border-radius:40rpx 40rpx 0 0;background:var(--surface);padding:16rpx 32rpx calc(34rpx + env(safe-area-inset-bottom));animation:sheet-in .32s cubic-bezier(.2,.8,.2,1);box-shadow:0 -24rpx 100rpx #00000040}
+.sheet-grip{height:7rpx;width:64rpx;border-radius:8rpx;background:var(--line);margin:0 auto 30rpx}
+.sheet-title{font-size:38rpx;letter-spacing:-1rpx;font-weight:600}
+.sheet-close{background:var(--raised);border:1rpx solid var(--line);width:64rpx;padding:0;line-height:62rpx;border-radius:50%;color:var(--muted);font-size:32rpx}
+.theme-grid{display:flex;flex-wrap:wrap;gap:16rpx;margin-top:30rpx}
+.theme-option{width:calc((100% - 32rpx)/3);margin:0;padding:8rpx 8rpx 0;border-radius:23rpx;border:2rpx solid transparent;background:transparent;font-weight:400;line-height:1.5}
+.theme-option.selected{border-color:var(--accent);background:var(--accent-soft)}
+.theme-mini{height:134rpx;border-radius:16rpx;padding:15rpx;border:1rpx solid}
+.mini-line{width:45%;height:5rpx;border-radius:3rpx}
+.mini-bubble{padding:11rpx;margin-top:12rpx;border-radius:8rpx}
+.mini-bubble-line{height:4rpx;margin:6rpx 0;width:68%;border-radius:4rpx}
+.mini-bubble-line.second{width:88%;opacity:.5}
+.mini-input{display:flex;align-items:center;justify-content:space-between;padding:0 8rpx;margin-top:9rpx;height:25rpx;border-radius:5rpx}
+.mini-input text{font-size:17rpx}
+.mini-input-action{height:12rpx;width:12rpx;border-radius:50%}
+.theme-caption{display:flex;justify-content:space-between;align-items:center;font-size:23rpx;line-height:60rpx;padding:0 6rpx;color:var(--ink)}
+.theme-check{color:var(--accent)}
+.motion-label{margin:28rpx 0 16rpx;font-size:25rpx}
+.motion-options{display:flex;background:var(--raised);padding:7rpx;gap:7rpx;border-radius:22rpx}
+.motion-option{flex:1;border:0;background:transparent;color:var(--muted);border-radius:17rpx;line-height:64rpx}
+.motion-options .selected{background:var(--accent-soft);color:var(--accent)}
+@keyframes sheet-in{from{opacity:0;transform:translateY(35%)}
+to{opacity:1;transform:translateY(0)}
+}
+@keyframes fade-in{from{opacity:0}
+to{opacity:1}
+}
+
+/* Per-page refinement: explicit slots, readable metadata and stable hit areas. */
+.theme-content{width:100%;box-sizing:border-box}
+.theme-sheet{box-sizing:border-box}
+.theme-mini{box-sizing:border-box}
+@media(max-height:600px){
+.sheet-grip{margin-bottom:16rpx}
+.theme-grid{margin-top:18rpx;gap:12rpx}
+.theme-option{width:calc((100% - 24rpx)/3)}
+.theme-mini{height:106rpx;padding:10rpx}
+.theme-caption{line-height:48rpx}
+.motion-label{margin:18rpx 0 12rpx}
+}
+@media(max-height:440px){
+.theme-sheet{padding-top:10rpx}
+.sheet-grip{margin-bottom:8rpx}
+.sheet-title{font-size:30rpx}
+.theme-mini{height:64rpx;padding:8rpx}
+.mini-bubble{margin-top:6rpx;padding:3rpx}
+.mini-input{display:none}
+.theme-caption{line-height:38rpx}
+.motion-option{line-height:48rpx}
+.motion-label{margin:10rpx 0 8rpx}
+}
+.theme-sheet{padding-bottom:calc(20rpx + env(safe-area-inset-bottom))}
+.theme-check{display:flex;align-items:center;width:26rpx;height:30rpx}
+.mini-input-icon{display:flex;align-items:center;background:transparent!important;width:auto;height:auto}
+.theme-mini{overflow:hidden}
+.theme-option{display:block}
+.sheet-close{display:flex;align-items:center;justify-content:center}
+.motion-options{margin-bottom:10rpx}
+@media(min-width:600px) and (max-height:440px){
+.theme-sheet{padding:10px 20px calc(10px + env(safe-area-inset-bottom))}
+.sheet-grip{height:3px;width:32px;margin-bottom:6px}
+.sheet-title{font-size:22px}
+.theme-sheet .eyebrow{font-size:10px}
+.sheet-close{width:36px;height:36px;line-height:36px}
+.theme-grid{gap:8px;margin-top:10px}
+.theme-option{width:calc((100% - 40px)/6);padding:4px 4px 0;border-radius:12px}
+.theme-mini{height:52px;padding:6px}
+.theme-caption{font-size:12px;line-height:28px;padding:0 3px}
+.motion-label{font-size:13px;margin:10px 0 6px}
+.motion-label .tiny{font-size:11px}
+.motion-options{padding:4px;gap:4px;margin-bottom:0}
+.motion-option{line-height:34px;font-size:13px}
+}
