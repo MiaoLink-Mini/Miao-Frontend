@@ -2,11 +2,11 @@
 
 2026-09-06：`LiveGateway`、`wire.js` 与 Runtime 已接入 `weagent/1`。当前默认 live + 本机开发身份；登录/配对/会话/审批/提问/取消/历史与断线恢复已完成跨层 fixture 验证。详见 [本轮 Review、修复与验收边界](integration-review.md)。
 
-协议唯一来源为 `../WeAgent-Backend/contracts/protocol.schema.json`。`npm run sync:contract` 生成小程序无运行依赖的协议数据，`npm run build` 校验漂移与回归。真实微信凭据、HTTPS/WSS 合法域名和付费模型响应尚未验收。
+协议唯一来源为 `../Miao-Backend/contracts/protocol.schema.json`。`npm run sync:contract` 生成小程序无运行依赖的协议数据，`npm run build` 校验漂移与回归。真实微信凭据、HTTPS/WSS 合法域名和付费模型响应尚未验收。
 
 ## 本机运行
 
-- Gateway：按 `../WeAgent-Backend/docs/running.md` 启动。保留当前已有服务，不重启或覆盖其他 Agent 的进程。
+- Gateway：按 `../Miao-Backend/docs/running.md` 启动。保留当前已有服务，不重启或覆盖其他 Agent 的进程。
 - 应用层：按 `../WeAgent-Node/README.md` 配置并启动 Daemon；在小程序配对页输入其一次性配对码，核对指纹后确认。不要将私钥、凭据和 stateDir 加入源码。
 - 前端：开发者工具导入本工程。`miniprogram/config.js` 默认使用本机 18080 与开发身份 owner；连接失败不会回退 FakeGateway。
 - 独立回归：`npm run test:integration` 使用另一个端口和临时数据库，原生模型接口为 fixture，不触发付费模型请求。

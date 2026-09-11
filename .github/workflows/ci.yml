@@ -7,10 +7,10 @@ on:
   workflow_dispatch:
     inputs:
       backend_ref:
-        description: 'Explicit GoLink-Backend commit, tag or branch'
+        description: 'Explicit Miao-Backend commit, tag or branch'
         type: string
         required: true
-        default: '32b495120644f8bfb85327a4e96e45d6b51ccc33'
+        default: '8aafd1015c7c00befa4227c9eeb68027b3e0c253'
 
 permissions:
   contents: read
@@ -31,20 +31,20 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: WeAgent-Frontend
+        working-directory: Miao-Frontend
     steps:
       - name: Check out frontend under its source-compatible directory
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          path: WeAgent-Frontend
+          path: Miao-Frontend
           persist-credentials: false
 
       - name: Check out the canonical Gateway contract
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          repository: GoLink-Mini/GoLink-Backend
-          ref: ${{ inputs.backend_ref || '32b495120644f8bfb85327a4e96e45d6b51ccc33' }}
-          path: WeAgent-Backend
+          repository: MiaoLink-Mini/Miao-Backend
+          ref: ${{ inputs.backend_ref || '8aafd1015c7c00befa4227c9eeb68027b3e0c253' }}
+          path: Miao-Backend
           persist-credentials: false
 
       - name: Set up Node.js
@@ -58,7 +58,7 @@ jobs:
           {
             printf '### Frontend / Node %s\n\n' "$(node --version)"
             printf -- '- Frontend: `%s`\n' "$(git rev-parse HEAD)"
-            printf -- '- Backend: `%s`\n' "$(git -C ../WeAgent-Backend rev-parse HEAD)"
+            printf -- '- Backend: `%s`\n' "$(git -C ../Miao-Backend rev-parse HEAD)"
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Check committed protocol output without regenerating it

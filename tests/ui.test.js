@@ -16,8 +16,8 @@ test('喵连 product branding uses the supplied icon without changing live stora
   assert.match(login, />喵连</);
   assert.match(login, /class="orbit orbit-one"/);
   assert.match(login, /class="orbit orbit-two"/);
-  assert.match(login, /class="welcome-logo" src="\/assets\/golink.png" mode="aspectFit"/);
-  assert.doesNotMatch(login, /<activity-mark|>GoLink</);
+  assert.match(login, /<activity-mark active="\{\{pageActive\}\}" size="large"\/>/);
+  assert.doesNotMatch(login, />GoLink</);
   assert.match(login, /class="welcome-heading">你的想法，<\/view><view class="welcome-heading muted-heading">值得立即实现。<\/view>/);
   assert.doesNotMatch(login, /灵感不等人|工作不限地点/);
   const about = fs.readFileSync(path.join(root, 'pages/about/index.wxml'), 'utf8');

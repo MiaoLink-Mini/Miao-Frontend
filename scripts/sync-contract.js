@@ -2,7 +2,7 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
-const source = fs.readFileSync(path.resolve(__dirname, '../../WeAgent-Backend/contracts/protocol.schema.json'));
+const source = fs.readFileSync(path.resolve(__dirname, '../../Miao-Backend/contracts/protocol.schema.json'));
 const schema = JSON.parse(source);
 function compact(value) {
   if (Array.isArray(value)) return value.map(compact);
