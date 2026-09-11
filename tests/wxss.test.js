@@ -25,6 +25,17 @@ test('native v2 buttons use full-width actions without automatic horizontal marg
   assert.match(fs.readFileSync(path.join(root, 'pages/share/index.wxss'), 'utf8'), /button\.ttl\{width:auto/);
 });
 
+test('theme sheet grid options outrank the global full-width button reset', () => {
+  const source = fs.readFileSync(path.join(root, 'components/theme-switcher/index.wxss'), 'utf8');
+  // app.wxss forces button:not([size='mini']) to width:100%; the grid options must keep the same attribute guard or they collapse into one column and the sheet overflows the screen.
+  assert.doesNotMatch(source, /\.theme-option\{/);
+  assert.match(source, /\.theme-option:not\(\[size='mini'\]\)\{width:calc\(\(100% - 32rpx\)\/3\)/);
+  assert.match(source, /\.theme-option:not\(\[size='mini'\]\)\{display:block\}/);
+  // The accent dot inside each theme preview must stay a small circle.
+  const wxml = fs.readFileSync(path.join(root, 'components/theme-switcher/index.wxml'), 'utf8');
+  assert.match(wxml, /class="mini-input-action"/);
+});
+
 test('WXSS selectors never use the unsupported universal selector', () => {
   for (const file of files) {
     const source = fs.readFileSync(file, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '');

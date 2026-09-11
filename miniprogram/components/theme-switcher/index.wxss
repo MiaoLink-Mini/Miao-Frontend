@@ -5,7 +5,7 @@
 .sheet-title{font-size:38rpx;letter-spacing:-1rpx;font-weight:600}
 .sheet-close{background:var(--raised);border:1rpx solid var(--line);width:64rpx;padding:0;line-height:62rpx;border-radius:50%;color:var(--muted);font-size:32rpx}
 .theme-grid{display:flex;flex-wrap:wrap;gap:16rpx;margin-top:30rpx}
-.theme-option{width:calc((100% - 32rpx)/3);margin:0;padding:8rpx 8rpx 0;border-radius:23rpx;border:2rpx solid transparent;background:transparent;font-weight:400;line-height:1.5}
+.theme-option:not([size='mini']){width:calc((100% - 32rpx)/3);margin:0;padding:8rpx 8rpx 0;border-radius:23rpx;border:2rpx solid transparent;background:transparent;font-weight:400;line-height:1.5}
 .theme-option.selected{border-color:var(--accent);background:var(--accent-soft)}
 .theme-mini{height:134rpx;border-radius:16rpx;padding:15rpx;border:1rpx solid}
 .mini-line{width:45%;height:5rpx;border-radius:3rpx}
@@ -35,7 +35,7 @@ to{opacity:1}
 @media(max-height:600px){
 .sheet-grip{margin-bottom:16rpx}
 .theme-grid{margin-top:18rpx;gap:12rpx}
-.theme-option{width:calc((100% - 24rpx)/3)}
+.theme-option:not([size='mini']){width:calc((100% - 24rpx)/3)}
 .theme-mini{height:106rpx;padding:10rpx}
 .theme-caption{line-height:48rpx}
 .motion-label{margin:18rpx 0 12rpx}
@@ -55,7 +55,7 @@ to{opacity:1}
 .theme-check{display:flex;align-items:center;width:26rpx;height:30rpx}
 .mini-input-icon{display:flex;align-items:center;background:transparent!important;width:auto;height:auto}
 .theme-mini{overflow:hidden}
-.theme-option{display:block}
+.theme-option:not([size='mini']){display:block}
 .sheet-close{display:flex;align-items:center;justify-content:center}
 .motion-options{margin-bottom:10rpx}
 @media(min-width:600px) and (max-height:440px){
@@ -65,7 +65,7 @@ to{opacity:1}
 .theme-sheet .eyebrow{font-size:10px}
 .sheet-close{width:36px;height:36px;line-height:36px}
 .theme-grid{gap:8px;margin-top:10px}
-.theme-option{width:calc((100% - 40px)/6);padding:4px 4px 0;border-radius:12px}
+.theme-option:not([size='mini']){width:calc((100% - 40px)/6);padding:4px 4px 0;border-radius:12px}
 .theme-mini{height:52px;padding:6px}
 .theme-caption{font-size:12px;line-height:28px;padding:0 3px}
 .motion-label{font-size:13px;margin:10px 0 6px}
