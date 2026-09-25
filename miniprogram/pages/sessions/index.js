@@ -13,6 +13,7 @@ function options(items,id,label,missingLabel,staged){
   return result;
 }
 definePage({
+  public:true,
   revealSession(e){this.setData({swipedId:e.detail.id});},
   async renameSession(e){
     if(this.renaming||this.deleting||this.data.busy||this.data.unknown)return;
@@ -88,7 +89,7 @@ definePage({
       (d.filter==='all'||(d.filter==='active'?session.active:d.filter==='attention'?session.pending>0:session.state===d.filter))&&
       (!d.nodeId||session.nodeId===d.nodeId)&&(!d.projectId||session.projectId===d.projectId)&&(!d.agentId||session.agentId===d.agentId));
     const scopeCount=[d.nodeId,d.projectId,d.agentId].filter(Boolean).length;
-    this.setData(Object.assign({},v,{demo:!rt.live,list:list.sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned)),nodeOptions,projectOptions,agentOptions,
+    this.setData(Object.assign({},v,{demo:!rt.live,guest:!rt.auth,list:list.sort((a,b)=>Number(!!b.pinned)-Number(!!a.pinned)),nodeOptions,projectOptions,agentOptions,
       nodeIndex:nodeOptions.findIndex(item=>item.id===d.nodeId),projectIndex:projectOptions.findIndex(item=>item.id===d.projectId),agentIndex:agentOptions.findIndex(item=>item.id===d.agentId),
       scopeCount,hasFilters:!!q||d.filter!=='all'||d.organization!=='all'||scopeCount>0}));
     if(d.filterSheet)this.setData({draftNodeIndex:Math.max(0,nodeOptions.findIndex(x=>x.id===d.filterDraft.nodeId)),draftProjectIndex:Math.max(0,projectOptions.findIndex(x=>x.id===d.filterDraft.projectId)),draftAgentIndex:Math.max(0,agentOptions.findIndex(x=>x.id===d.filterDraft.agentId))});

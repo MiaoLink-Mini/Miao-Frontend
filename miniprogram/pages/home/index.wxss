@@ -27,3 +27,10 @@
 .attention-row .chevron{margin-left:auto}
 .metric-strip{margin-top:20rpx}
 .metric-tile .inline-action{min-height:32rpx}
+
+/* Guest mode: browsing without login. */
+.guest-card{padding:36rpx 32rpx}
+.guest-title{font-size:34rpx;font-weight:600;line-height:1.4}
+.guest-copy{margin-top:12rpx;line-height:1.6}
+.guest-actions{display:flex;gap:18rpx;margin-top:30rpx}
+.guest-actions button{flex:1;margin:0;min-height:94rpx}

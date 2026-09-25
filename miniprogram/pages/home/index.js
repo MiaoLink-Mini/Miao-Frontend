@@ -1,6 +1,7 @@
 const {definePage,runtime} = require('../../utils/page');
 const {switchList} = require('../../utils/navigation');
 definePage({
+  public: true,
   data: {},
   refresh() {
     const rt=runtime(),v=rt.view();
@@ -8,7 +9,7 @@ definePage({
     const recent=v.sessions.filter(session=>!session.archived).slice(0,3);
     const attention=v.requests.filter(request=>request.state==='deciding'||request.state==='pending'&&!request.expired).slice(0,2);
     this.setData(Object.assign({},v,{
-      demo:!rt.live,visibleNodes,recent,attention,
+      demo:!rt.live,guest:!rt.auth,visibleNodes,recent,attention,
       recentProjects:v.projects.filter(project=>visibleNodes.some(node=>node.id===project.nodeId)).slice(0,3),
       createTarget:visibleNodes.length?'/pages/create/index':'/pages/pair/index'
     }));

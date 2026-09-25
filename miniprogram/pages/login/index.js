@@ -9,6 +9,7 @@ definePage({
     const appId=wx.getAccountInfoSync().miniProgram.appId;
     wx.setClipboardData({data:JSON.stringify({appId,platform:info.platform,system:info.system,endpoint:e.endpoint||(g.base||config.gatewayURL).replace(/^http/,'ws')+'/v1/ws/client',code:errorCode(e),phase:e.phase||'',closeCode:e.closeCode||null,nativeDetail:require('../../utils/socket-error').nativeDetail({message:e.nativeDetail||''}),message:this.data.error},null,2)});
   },
+  browse(){wx.switchTab({url:'/pages/home/index'});},
   async enter(){
     if(this.data.busy)return;
     this.connectionError=null;

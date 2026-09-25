@@ -3,7 +3,7 @@ const { errorText } = require('./error-display');
 async function fetchList(more = false) {
   more = more === true; // A native bindtap passes an event object, not a pagination flag.
   const rt = getApp().runtime;
-  if (!rt.live) return;
+  if (!rt.live || !rt.auth) return;
   if (more && this.data.listLoading) return;
   const generation = (this.queryGeneration || 0) + 1, epoch = rt.epoch;
   this.queryGeneration = generation;

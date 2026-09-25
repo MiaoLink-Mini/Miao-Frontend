@@ -1,8 +1,9 @@
 <page-meta root-background-color="{{themeCanvas || '#171816'}}" page-style="background-color:{{themeCanvas || '#171816'}}" />
 <view class="app-surface {{themeId}} motion-{{motionMode}} {{pageActive ? '' : 'is-hidden'}} tabbed" style="{{themeStyle}}">
-  <connection-bar state="{{connection}}" label="{{connectionLabel}}"/>
+  <connection-bar wx:if="{{!guest}}" state="{{connection}}" label="{{connectionLabel}}"/>
   <view class="page {{preferences.largeText ? 'large' : ''}}">
     <view class="screen-head"><view><view class="screen-kicker">喵连</view><view class="title">工作台</view></view><button class="primary small inline-action" bindtap="open" data-url="{{createTarget}}"><ui-icon name="plus" size="{{30}}" tone="accentInk" /> 新会话</button></view>
+    <view wx:if="{{guest}}" class="card guest-card"><view class="guest-title">游客浏览中</view><view class="muted guest-copy">先随意逛逛。登录后即可连接设备、查看会话与待办。</view><view class="guest-actions"><button class="primary inline-action" bindtap="open" data-url="/pages/login/index">登录<ui-icon name="arrow-up-right" size="{{30}}" tone="accentInk" /></button><button class="secondary" bindtap="open" data-url="/pages/guide/index?replay=1">了解功能</button></view></view>
     <view class="metric-strip">
       <button class="metric-tile" bindtap="activeSessions"><text class="metric-value">{{activeCount}}</text><view class="metric-label inline-action"><text>进行中</text><ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view></button>
       <button class="metric-tile {{pendingCount ? 'needs-attention' : ''}}" bindtap="pendingRequests"><text class="metric-value">{{pendingCount}}</text><view class="metric-label inline-action"><text>待处理</text><ui-icon name="arrow-up-right" size="{{28}}" tone="accent" /></view></button>

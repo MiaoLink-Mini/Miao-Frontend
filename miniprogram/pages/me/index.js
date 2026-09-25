@@ -4,9 +4,10 @@ const {
 }
 =require('../../utils/page');
 definePage({
+  public:true,
   data: { avatarPath: '/assets/default-avatar.png' },
   async onShow() {
-    const rt=runtime(); if(!rt.live)return;
+    const rt=runtime(); if(!rt.live||!rt.auth)return;
     const epoch=rt.epoch, life=this.pageLife, userId=rt.gateway.user.id;
     try {
       const profile=await rt.gateway.getProfile();
@@ -17,25 +18,27 @@ definePage({
     } catch (_) { /* Keep the last available profile; the editor offers explicit retry. */ }
   },
   editProfile() {
+    if(!runtime().auth)return wx.navigateTo({url:'/pages/login/index'});
     if(!runtime().live)return wx.showToast({title:errorText('UNAUTHENTICATED'),icon:'none'});
     wx.navigateTo({url:'/pages/profile/index'});
   },
   refresh(){
-    const rt=runtime(),user=rt.live&&rt.gateway.user;
+    const rt=runtime(),user=rt.live&&rt.auth&&rt.gateway.user;
     const uid=user&&user.id||'demo';
     if(this.profileUserId!==uid){this.profileUserId=uid;this.setData({avatarPath:'/assets/default-avatar.png'});}
-    this.setData(Object.assign(rt.view(),{demo:!rt.live,
-      accountTitle:user&&user.displayName?user.displayName:'喵连',
+    this.setData(Object.assign(rt.view(),{demo:!rt.live,guest:!rt.auth,
+      accountTitle:!rt.auth?'未登录':user&&user.displayName?user.displayName:'喵连',
       accountNote:rt.live?'已连接真实 Gateway':'本地身份 · 尚未关联微信账号',
       version:require('../../config').version}));
   }
+  ,login(){wx.navigateTo({url:'/pages/login/index'});}
   ,logout(){
     const live=runtime().live;
     wx.showModal({
       title:live?'退出登录？':'退出演示账号？',content:(live?'撤销本次登录令牌，':'')+'清除本次草稿与正文缓存。退出页面或账号不会终止远端任务。',success:r=>{
         if(r.confirm){
           Promise.resolve(runtime().logout()).catch(()=>{}).then(()=>wx.reLaunch({
-            url:'/pages/login/index'
+            url:'/pages/home/index'
           }
           ));
         }

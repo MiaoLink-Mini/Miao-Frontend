@@ -19,3 +19,5 @@
 
 .connection-detail{font-size:23rpx;line-height:1.5;color:var(--muted);overflow-wrap:anywhere;margin:16rpx 0}
 .welcome-bottom button.connection-copy{line-height:64rpx;margin:12rpx 0 20rpx}
+
+.welcome-bottom .browse{background:transparent;border:0;font-weight:400;color:var(--muted);margin-top:12rpx}

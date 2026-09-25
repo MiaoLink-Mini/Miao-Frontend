@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/login/index",
     "pages/home/index",
+    "pages/login/index",
     "pages/sessions/index",
     "pages/inbox/index",
     "pages/me/index",
